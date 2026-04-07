@@ -1,0 +1,44 @@
+key: internal.petukhov
+family: convection_internal
+title: "Petukhov (1970)"
+output: Nu
+formula_latex: >
+  Nu = \frac{(f/8) \cdot Re \cdot Pr}{1.07 + 12.7\sqrt{f/8}(Pr^{2/3} - 1)},
+  \quad f = (0.790 \ln Re - 1.64)^{-2}
+flow_regime: turbulent
+boundary_conditions: [constant_wall_temperature, constant_heat_flux]
+required_inputs: [Reynolds, Prandtl]
+validity:
+  geometry_type: circular_tube
+  re_min: 10000
+  re_max: 5000000
+  pr_min: 0.5
+  pr_max: 2000
+  notes: >
+    Primary source (Petukhov 1970, Adv. Heat Transfer Vol. 6, p. 523, Eq. 50):
+    "describes predicted results with accuracy of 5-6% over range of 10^4-5×10^6
+    for Re and 0.5-200 for Pr; 10% accuracy for 0.5 < Pr < 2000 (same Re range)."
+    The ±6% applies only for Pr <= 200; for Pr 200-2000, accuracy is ±10%.
+    Lower Re limit 10^4 is explicit in Eq. (50) derivation and Footnote 7 on p. 527.
+    Upper Re limit 5×10^6 stated explicitly on p. 523 and in Footnote 7 on p. 527.
+literature_uncertainty_pct: 10  # Changed from 6: primary source states ±5-6% for Pr<=200 but ±10% for full range Pr 0.5-2000 (Petukhov 1970, p. 523). Using 10% as conservative bound covering all valid Pr.
+assumptions:
+  - "Smooth circular tube, fully developed turbulent flow"
+  - "Fluid properties at bulk mean temperature"
+  - "Friction factor from Petukhov formula: $f = (0.790 \\ln Re - 1.64)^{-2}$"
+  - "Denominator constant 1.07 (vs. 1.0 in Gnielinski) — more conservative for $Re > 10^4$"
+source:
+  authors: ["Petukhov, B.S."]
+  year: 1970
+  title: "Heat Transfer and Friction in Turbulent Pipe Flow with Variable Physical Properties"
+  journal: "Advances in Heat Transfer"
+  volume: 6
+  pages: "503-564"
+  publisher: "Academic Press, New York"
+  doi: "10.1016/S0065-2717(08)70153-9"
+  url: "https://doi.org/10.1016/S0065-2717(08)70153-9"
+notes:
+  - "Basis for Gnielinski (1976) which extends it to Re > 3000 with (Re - 1000) modification"
+  - "Accuracy per primary source (Petukhov 1970, p. 523, Eq. 50): ±5-6% for Re 1e4-5e6 AND Pr 0.5-200; ±10% for Re 1e4-5e6 AND Pr 0.5-2000. The ±6% in literature_uncertainty_pct is the tighter bound (Pr<=200). For oils/high-Pr fluids up to Pr=2000, the stated accuracy is ±10%."
+  - "For Re < 1e4, use Gnielinski (1976) instead"
+  - "Friction factor f = (0.790 ln Re - 1.64)^-2 is a smooth-pipe Petukhov formula"

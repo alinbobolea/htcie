@@ -1,0 +1,870 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Correlation Metadata Schema" href="methods/metadata-schema.html"><link rel="prev" title="API Reference" href="api_reference/index.html">
+
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>htcie API Reference - htcie documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">htcie  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">htcie  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Correlations</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="correlations/index.html">Correlations Catalog</a><input aria-label="Toggle navigation of Correlations Catalog" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="correlations/internal.html">Internal Forced Convection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="correlations/external.html">External Forced Convection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="correlations/tube_banks.html">Tube Banks</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="architecture/index.html">Architecture</a><input aria-label="Toggle navigation of Architecture" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture/arch_overview.html">Architecture Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture/scoring.html">Scoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture/dev-log.html">Development Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture/overview.html">htcie Architecture Overview</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api_reference/index.html">API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">More</span></p>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">htcie API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methods/metadata-schema.html">Correlation Metadata Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scoring/v0.html">Scoring v0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtm/summary.html">GTM Summary</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/api.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="htcie-api-reference">
+<h1>htcie API Reference<a class="headerlink" href="#htcie-api-reference" title="Link to this heading">¶</a></h1>
+<p>This guide is written for engineers who want to use htcie programmatically.
+You do not need to be a software developer — every step is explained in plain language,
+with complete examples you can copy and run immediately.</p>
+<hr class="docutils" />
+<section id="what-the-api-does">
+<h2>What the API does<a class="headerlink" href="#what-the-api-does" title="Link to this heading">¶</a></h2>
+<p>You describe a heat-transfer problem (fluid properties, geometry, flow conditions),
+and the API returns:</p>
+<ul class="simple">
+<li><p>every correlation that applies to your conditions</p></li>
+<li><p>which ones were filtered out and <strong>why</strong></p></li>
+<li><p>the Nusselt number computed by each applicable correlation</p></li>
+<li><p>a ranked recommendation (best match first) with a score breakdown</p></li>
+<li><p>an overall confidence rating based on how much the methods agree</p></li>
+<li><p>a plain-language explanation of the ranking decision</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="base-url">
+<h2>Base URL<a class="headerlink" href="#base-url" title="Link to this heading">¶</a></h2>
+<p>All requests go to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">htcie</span><span class="o">-</span><span class="n">api</span><span class="o">.</span><span class="n">onrender</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+<section id="first-time-note-on-the-free-tier">
+<h3>First-time note on the free tier<a class="headerlink" href="#first-time-note-on-the-free-tier" title="Link to this heading">¶</a></h3>
+<p>If the service has been idle, the first request may take <strong>20–30 seconds</strong> to
+respond while the server wakes up. This is normal. Subsequent requests are fast.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Link to this heading">¶</a></h2>
+<p><strong>None required.</strong> All current correlations are publicly accessible with no
+API key or login.</p>
+</section>
+<hr class="docutils" />
+<section id="interactive-explorer">
+<h2>Interactive explorer<a class="headerlink" href="#interactive-explorer" title="Link to this heading">¶</a></h2>
+<p>FastAPI automatically generates an interactive documentation page at:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">htcie</span><span class="o">-</span><span class="n">api</span><span class="o">.</span><span class="n">onrender</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">docs</span>
+</pre></div>
+</div>
+<p>Open this URL in any browser. You will see a list of every endpoint. Click on
+one, fill in the fields, and click <strong>Execute</strong> to run a live request — no
+<code class="docutils literal notranslate"><span class="pre">curl</span></code> or Python required. This is the easiest way to explore the API for the
+first time.</p>
+</section>
+<hr class="docutils" />
+<section id="endpoints">
+<h2>Endpoints<a class="headerlink" href="#endpoints" title="Link to this heading">¶</a></h2>
+<section id="check-the-server-is-running-get-health">
+<h3>1. Check the server is running — <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/health</span></code><a class="headerlink" href="#check-the-server-is-running-get-health" title="Link to this heading">¶</a></h3>
+<p>Use this to confirm the API is up before sending calculations.</p>
+<p><strong>Request:</strong> no input needed.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>https://htcie-api.onrender.com/health
+</pre></div>
+</div>
+<p><strong>Response:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;htcie&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>If you get this response, the API is running correctly.</p>
+</section>
+<hr class="docutils" />
+<section id="list-available-correlations-get-methods">
+<h3>2. List available correlations — <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/methods</span></code><a class="headerlink" href="#list-available-correlations-get-methods" title="Link to this heading">¶</a></h3>
+<p>Use this to see which heat-transfer correlations are available.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>https://htcie-api.onrender.com/methods
+</pre></div>
+</div>
+<p><strong>Response:</strong> a list of all correlation entries. Each entry shows the correlation
+name, its source reference, and the validity range (Re, Pr bounds).</p>
+</section>
+<hr class="docutils" />
+<section id="run-an-evaluation-post-evaluate">
+<h3>3. Run an evaluation — <code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/evaluate</span></code><a class="headerlink" href="#run-an-evaluation-post-evaluate" title="Link to this heading">¶</a></h3>
+<p>This is the main endpoint. You describe the engineering problem and htcie
+returns a complete analysis.</p>
+<section id="how-to-structure-your-request">
+<h4>How to structure your request<a class="headerlink" href="#how-to-structure-your-request" title="Link to this heading">¶</a></h4>
+<p>The request body is a JSON object with a single key <code class="docutils literal notranslate"><span class="pre">&quot;state&quot;</span></code>, which contains
+four sections: <code class="docutils literal notranslate"><span class="pre">fluid</span></code>, <code class="docutils literal notranslate"><span class="pre">geometry</span></code>, <code class="docutils literal notranslate"><span class="pre">boundary</span></code>, and <code class="docutils literal notranslate"><span class="pre">flow</span></code>.</p>
+</section>
+<section id="field-reference">
+<h4>Field reference<a class="headerlink" href="#field-reference" title="Link to this heading">¶</a></h4>
+<p><strong><code class="docutils literal notranslate"><span class="pre">state.fluid</span></code> — thermophysical properties of the working fluid</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Unit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">density</span></code></p></td>
+<td><p>yes</p></td>
+<td><p>kg/m³</p></td>
+<td><p>Fluid density at bulk temperature</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">viscosity</span></code></p></td>
+<td><p>yes</p></td>
+<td><p>Pa·s</p></td>
+<td><p>Dynamic viscosity at bulk temperature</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">thermal_conductivity</span></code></p></td>
+<td><p>yes</p></td>
+<td><p>W/m·K</p></td>
+<td><p>Thermal conductivity at bulk temperature</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">heat_capacity</span></code></p></td>
+<td><p>yes</p></td>
+<td><p>J/kg·K</p></td>
+<td><p>Specific heat capacity at constant pressure</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">wall_viscosity</span></code></p></td>
+<td><p>no</p></td>
+<td><p>Pa·s</p></td>
+<td><p>Dynamic viscosity at wall temperature — only needed for Sieder-Tate correction</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">state.geometry</span></code> — description of the heat-transfer surface</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Unit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">geometry_type</span></code></p></td>
+<td><p>yes</p></td>
+<td><p>—</p></td>
+<td><p>One of the four values in the table below</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">characteristic_length</span></code></p></td>
+<td><p>yes</p></td>
+<td><p>m</p></td>
+<td><p>Tube inner diameter, cylinder diameter, or plate length</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hydraulic_diameter</span></code></p></td>
+<td><p>no</p></td>
+<td><p>m</p></td>
+<td><p>For circular tubes: same as <code class="docutils literal notranslate"><span class="pre">characteristic_length</span></code>; omit for other geometries</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">roughness</span></code></p></td>
+<td><p>no</p></td>
+<td><p>m</p></td>
+<td><p>Surface roughness; defaults to 0 (smooth)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pitch_transverse</span></code></p></td>
+<td><p>no*</p></td>
+<td><p>m</p></td>
+<td><p>For tube banks: centre-to-centre distance perpendicular to flow</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pitch_longitudinal</span></code></p></td>
+<td><p>no*</p></td>
+<td><p>m</p></td>
+<td><p>For tube banks: centre-to-centre distance parallel to flow</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">arrangement</span></code></p></td>
+<td><p>no*</p></td>
+<td><p>—</p></td>
+<td><p>For tube banks: <code class="docutils literal notranslate"><span class="pre">&quot;inline&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;staggered&quot;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>*Required when <code class="docutils literal notranslate"><span class="pre">geometry_type</span></code> is <code class="docutils literal notranslate"><span class="pre">&quot;tube_bank&quot;</span></code>.</p>
+<p><strong>Valid <code class="docutils literal notranslate"><span class="pre">geometry_type</span></code> values:</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+<th class="head"><p>Use for</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;circular_tube&quot;</span></code></p></td>
+<td><p>Flow inside a round tube or pipe</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;cylinder_crossflow&quot;</span></code></p></td>
+<td><p>Flow over the outside of a single cylinder</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;flat_plate&quot;</span></code></p></td>
+<td><p>Flow over a flat plate</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;tube_bank&quot;</span></code></p></td>
+<td><p>Flow across an array of tubes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">state.boundary</span></code> — thermal boundary condition at the surface</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">boundary_type</span></code></p></td>
+<td><p>yes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;constant_heat_flux&quot;</span></code> (uniform heating rate) or <code class="docutils literal notranslate"><span class="pre">&quot;constant_wall_temperature&quot;</span></code> (isothermal surface)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">wall_temperature</span></code></p></td>
+<td><p>no</p></td>
+<td><p>Wall temperature in K — used with <code class="docutils literal notranslate"><span class="pre">constant_wall_temperature</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bulk_temperature</span></code></p></td>
+<td><p>no</p></td>
+<td><p>Fluid bulk temperature in K — used for automatic heating/cooling detection</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">state.flow</span></code> — flow conditions</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Unit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">velocity</span></code></p></td>
+<td><p>yes</p></td>
+<td><p>m/s</p></td>
+<td><p>Mean flow velocity (bulk average)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mass_flow_rate</span></code></p></td>
+<td><p>no</p></td>
+<td><p>kg/s</p></td>
+<td><p>Alternative to velocity for some configurations</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">developing_length</span></code></p></td>
+<td><p>no</p></td>
+<td><p>m</p></td>
+<td><p>Axial position from the inlet — enables entry-length corrections</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="worked-example-air-flowing-inside-a-tube">
+<h4>Worked example: air flowing inside a tube<a class="headerlink" href="#worked-example-air-flowing-inside-a-tube" title="Link to this heading">¶</a></h4>
+<p><strong>Conditions:</strong></p>
+<ul class="simple">
+<li><p>Air at 60 °C (bulk temperature)</p></li>
+<li><p>Tube inner diameter: 25 mm</p></li>
+<li><p>Tube length: 2 m</p></li>
+<li><p>Mean velocity: 5 m/s</p></li>
+<li><p>Uniform heat flux boundary</p></li>
+</ul>
+<p><strong><code class="docutils literal notranslate"><span class="pre">curl</span></code> command:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://htcie-api.onrender.com/evaluate<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;state&quot;: {</span>
+<span class="s1">      &quot;fluid&quot;: {</span>
+<span class="s1">        &quot;density&quot;: 1.060,</span>
+<span class="s1">        &quot;viscosity&quot;: 1.96e-5,</span>
+<span class="s1">        &quot;thermal_conductivity&quot;: 0.030,</span>
+<span class="s1">        &quot;heat_capacity&quot;: 1007.0</span>
+<span class="s1">      },</span>
+<span class="s1">      &quot;geometry&quot;: {</span>
+<span class="s1">        &quot;geometry_type&quot;: &quot;circular_tube&quot;,</span>
+<span class="s1">        &quot;characteristic_length&quot;: 0.025,</span>
+<span class="s1">        &quot;hydraulic_diameter&quot;: 0.025</span>
+<span class="s1">      },</span>
+<span class="s1">      &quot;boundary&quot;: {</span>
+<span class="s1">        &quot;boundary_type&quot;: &quot;constant_heat_flux&quot;</span>
+<span class="s1">      },</span>
+<span class="s1">      &quot;flow&quot;: {</span>
+<span class="s1">        &quot;velocity&quot;: 5.0</span>
+<span class="s1">      }</span>
+<span class="s1">    }</span>
+<span class="s1">  }&#39;</span>
+</pre></div>
+</div>
+<p><strong>Response structure (key fields):</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;engine_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-01-15, 14:32:01&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;input_state&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;fluid&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="nt">&quot;geometry&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="nt">&quot;boundary&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="nt">&quot;flow&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;derived&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;reynolds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">8027.6</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;prandtl&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.714</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;graetz&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;entry_length_ratio&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;pitch_ratio_transverse&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;pitch_ratio_longitudinal&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;applicable&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;gnielinski&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;dittus_boelter&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;excluded&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;shah_laminar&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Re = 8027.6 outside validity range [0, 2300]&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;evaluations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gnielinski&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">42.3</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;uncertainty_pct&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;h&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">50840.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;h_low&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">45756.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;h_high&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">55924.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;uncertainty_note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;±10% per Gnielinski (1976)&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;ranking&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gnielinski&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.91</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;breakdown&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;validity_fit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.95</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;...&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dittus_boelter&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.74</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;breakdown&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;...&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;spread&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;mean&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">41.2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;stdev&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;relative_spread&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.027</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;high&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;explanation&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;best_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gnielinski&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;best_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.91</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;score_breakdown&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;validity_fit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.95</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;...&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;why_applicable&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;gnielinski is applicable for the given Re, Pr, and geometry.&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;why_others_excluded&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;shah_laminar&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">}],</span>
+<span class="w">    </span><span class="nt">&quot;key_assumptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Fully developed turbulent flow&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Smooth tube wall&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;confidence_class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;high&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;extrapolation_warnings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="nt">&quot;recommendation_note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Use gnielinski — highest score (0.910) for the given operating conditions.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Recommended method: gnielinski\nScore: 0.910\n...&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;scoring_weights_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v1&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Reading the response:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ranking[0]</span></code> is the <strong>best correlation for your conditions</strong>. Look up its <code class="docutils literal notranslate"><span class="pre">key</span></code> in <code class="docutils literal notranslate"><span class="pre">evaluations</span></code> to get the Nusselt number (<code class="docutils literal notranslate"><span class="pre">value</span></code>), heat transfer coefficient (<code class="docutils literal notranslate"><span class="pre">h</span></code>), and uncertainty band (<code class="docutils literal notranslate"><span class="pre">h_low</span></code> / <code class="docutils literal notranslate"><span class="pre">h_high</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">confidence</span></code> is a plain string: <code class="docutils literal notranslate"><span class="pre">&quot;high&quot;</span></code> (&lt; 10% spread), <code class="docutils literal notranslate"><span class="pre">&quot;medium&quot;</span></code> (10–25%), or <code class="docutils literal notranslate"><span class="pre">&quot;low&quot;</span></code> (&gt; 25%). Low confidence means the methods disagree significantly — double-check your inputs or consult a reference.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">excluded</span></code> explains which correlations were filtered out and why — useful for understanding the limits of your operating conditions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">explanation.text</span></code> is a pre-rendered, human-readable summary. <code class="docutils literal notranslate"><span class="pre">explanation.recommendation_note</span></code> is a single-sentence version.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="worked-example-air-flow-over-a-cylinder">
+<h4>Worked example: air flow over a cylinder<a class="headerlink" href="#worked-example-air-flow-over-a-cylinder" title="Link to this heading">¶</a></h4>
+<p><strong>Conditions:</strong></p>
+<ul class="simple">
+<li><p>Air at 25 °C</p></li>
+<li><p>Cylinder diameter: 50 mm</p></li>
+<li><p>Free-stream velocity: 8 m/s</p></li>
+<li><p>Isothermal surface</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://htcie-api.onrender.com/evaluate<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;state&quot;: {</span>
+<span class="s1">      &quot;fluid&quot;: {</span>
+<span class="s1">        &quot;density&quot;: 1.184,</span>
+<span class="s1">        &quot;viscosity&quot;: 1.849e-5,</span>
+<span class="s1">        &quot;thermal_conductivity&quot;: 0.0262,</span>
+<span class="s1">        &quot;heat_capacity&quot;: 1007.0</span>
+<span class="s1">      },</span>
+<span class="s1">      &quot;geometry&quot;: {</span>
+<span class="s1">        &quot;geometry_type&quot;: &quot;cylinder_crossflow&quot;,</span>
+<span class="s1">        &quot;characteristic_length&quot;: 0.050</span>
+<span class="s1">      },</span>
+<span class="s1">      &quot;boundary&quot;: {</span>
+<span class="s1">        &quot;boundary_type&quot;: &quot;constant_wall_temperature&quot;</span>
+<span class="s1">      },</span>
+<span class="s1">      &quot;flow&quot;: {</span>
+<span class="s1">        &quot;velocity&quot;: 8.0</span>
+<span class="s1">      }</span>
+<span class="s1">    }</span>
+<span class="s1">  }&#39;</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="common-errors">
+<h4>Common errors<a class="headerlink" href="#common-errors" title="Link to this heading">¶</a></h4>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>HTTP status</p></th>
+<th class="head"><p>Meaning</p></th>
+<th class="head"><p>What to check</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">200</span> <span class="pre">OK</span></code></p></td>
+<td><p>Success</p></td>
+<td><p>Read the response body</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">422</span> <span class="pre">Unprocessable</span> <span class="pre">Entity</span></code></p></td>
+<td><p>Invalid input</p></td>
+<td><p>Check required fields and value ranges; the response body explains which field failed</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">500</span> <span class="pre">Internal</span> <span class="pre">Server</span> <span class="pre">Error</span></code></p></td>
+<td><p>Server fault</p></td>
+<td><p>Check that <code class="docutils literal notranslate"><span class="pre">density</span></code>, <code class="docutils literal notranslate"><span class="pre">viscosity</span></code>, etc. are positive finite numbers</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="calling-the-api-from-python">
+<h2>Calling the API from Python<a class="headerlink" href="#calling-the-api-from-python" title="Link to this heading">¶</a></h2>
+<p>Install the <code class="docutils literal notranslate"><span class="pre">httpx</span></code> library if you don’t have it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>httpx
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">httpx</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;fluid&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;density&quot;</span><span class="p">:</span> <span class="mf">1.060</span><span class="p">,</span>
+            <span class="s2">&quot;viscosity&quot;</span><span class="p">:</span> <span class="mf">1.96e-5</span><span class="p">,</span>
+            <span class="s2">&quot;thermal_conductivity&quot;</span><span class="p">:</span> <span class="mf">0.030</span><span class="p">,</span>
+            <span class="s2">&quot;heat_capacity&quot;</span><span class="p">:</span> <span class="mf">1007.0</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;geometry_type&quot;</span><span class="p">:</span> <span class="s2">&quot;circular_tube&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;characteristic_length&quot;</span><span class="p">:</span> <span class="mf">0.025</span><span class="p">,</span>
+            <span class="s2">&quot;hydraulic_diameter&quot;</span><span class="p">:</span> <span class="mf">0.025</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;boundary&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;boundary_type&quot;</span><span class="p">:</span> <span class="s2">&quot;constant_heat_flux&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;flow&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;velocity&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s2">&quot;https://htcie-api.onrender.com/evaluate&quot;</span><span class="p">,</span>
+    <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span>
+    <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>  <span class="c1"># allow time for cold start on free tier</span>
+<span class="p">)</span>
+<span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+<span class="n">report</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+<span class="c1"># Best correlation result</span>
+<span class="n">best_key</span> <span class="o">=</span> <span class="n">report</span><span class="p">[</span><span class="s2">&quot;ranking&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;key&quot;</span><span class="p">]</span>
+<span class="n">best_eval</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">report</span><span class="p">[</span><span class="s2">&quot;evaluations&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">e</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">best_key</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Recommended correlation : </span><span class="si">{</span><span class="n">best_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nusselt number          : </span><span class="si">{</span><span class="n">best_eval</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Confidence              : </span><span class="si">{</span><span class="n">report</span><span class="p">[</span><span class="s1">&#39;confidence&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Summary                 : </span><span class="si">{</span><span class="n">report</span><span class="p">[</span><span class="s1">&#39;explanation&#39;</span><span class="p">][</span><span class="s1">&#39;recommendation_note&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="units-summary">
+<h2>Units summary<a class="headerlink" href="#units-summary" title="Link to this heading">¶</a></h2>
+<p>All inputs and outputs use SI units throughout.</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Quantity</p></th>
+<th class="head"><p>Unit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Length, diameter</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>Velocity</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-even"><td><p>Density</p></td>
+<td><p>kg/m³</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dynamic viscosity</p></td>
+<td><p>Pa·s</p></td>
+</tr>
+<tr class="row-even"><td><p>Thermal conductivity</p></td>
+<td><p>W/m·K</p></td>
+</tr>
+<tr class="row-odd"><td><p>Specific heat</p></td>
+<td><p>J/kg·K</p></td>
+</tr>
+<tr class="row-even"><td><p>Temperature</p></td>
+<td><p>K</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mass flow rate</p></td>
+<td><p>kg/s</p></td>
+</tr>
+<tr class="row-even"><td><p>Nusselt number</p></td>
+<td><p>dimensionless</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="methods/metadata-schema.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Correlation Metadata Schema</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="api_reference/index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">API Reference</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, htcie contributors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">htcie API Reference</a><ul>
+<li><a class="reference internal" href="#what-the-api-does">What the API does</a></li>
+<li><a class="reference internal" href="#base-url">Base URL</a><ul>
+<li><a class="reference internal" href="#first-time-note-on-the-free-tier">First-time note on the free tier</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#authentication">Authentication</a></li>
+<li><a class="reference internal" href="#interactive-explorer">Interactive explorer</a></li>
+<li><a class="reference internal" href="#endpoints">Endpoints</a><ul>
+<li><a class="reference internal" href="#check-the-server-is-running-get-health">1. Check the server is running — <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/health</span></code></a></li>
+<li><a class="reference internal" href="#list-available-correlations-get-methods">2. List available correlations — <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/methods</span></code></a></li>
+<li><a class="reference internal" href="#run-an-evaluation-post-evaluate">3. Run an evaluation — <code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/evaluate</span></code></a><ul>
+<li><a class="reference internal" href="#how-to-structure-your-request">How to structure your request</a></li>
+<li><a class="reference internal" href="#field-reference">Field reference</a></li>
+<li><a class="reference internal" href="#worked-example-air-flowing-inside-a-tube">Worked example: air flowing inside a tube</a></li>
+<li><a class="reference internal" href="#worked-example-air-flow-over-a-cylinder">Worked example: air flow over a cylinder</a></li>
+<li><a class="reference internal" href="#common-errors">Common errors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#calling-the-api-from-python">Calling the API from Python</a></li>
+<li><a class="reference internal" href="#units-summary">Units summary</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

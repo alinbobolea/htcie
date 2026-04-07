@@ -1,0 +1,23 @@
+# Render.com Blueprint — deploys both htcie services from this repository.
+# Docs: https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: htcie-api
+    runtime: python
+    buildCommand: pip install -e .
+    startCommand: uvicorn htcie.api.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: HTCIE_DATA_DIR
+        value: data/correlations
+
+  - type: web
+    name: htcie-gui
+    runtime: python
+    buildCommand: pip install -e .
+    startCommand: htcie-gui
+    envVars:
+      - key: HTCIE_DATA_DIR
+        value: data/correlations
+      - key: NICEGUI_STORAGE_SECRET
+        generateValue: true

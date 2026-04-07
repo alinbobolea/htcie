@@ -1,0 +1,41 @@
+key: external.zukauskas_cylinder
+family: convection_external
+title: "Žukauskas (1972)"
+output: Nu
+formula_latex: >
+  \overline{Nu}_D = C \cdot Re_D^{m} \cdot Pr^{n} \cdot \left(\frac{Pr}{Pr_s}\right)^{0.25},
+  \quad n = 0.37 \text{ for } Pr \leq 10,\; n = 0.36 \text{ for } Pr > 10
+flow_regime: all
+boundary_conditions: [constant_wall_temperature]
+required_inputs: [Reynolds, Prandtl]
+validity:
+  geometry_type: cylinder_crossflow
+  re_min: 1
+  re_max: 1000000
+  pr_min: 0.7
+  pr_max: 500
+  notes: >
+    C and m tabular by Re (Incropera Table 7.4); Pr_s correction optional when
+    wall temperature not known. Properties at T_inf except Pr_s at T_s.
+    Verified against Incropera 7th ed. Eq 7.53 and Table 7.4.
+literature_uncertainty_pct: 25
+assumptions:
+  - "Isothermal cylinder in crossflow"
+  - "Fluid properties at free-stream temperature T_inf except Pr_s evaluated at surface temperature T_s"
+  - "Pr exponent n = 0.37 for Pr <= 10; n = 0.36 for Pr > 10 (Incropera Eq 7.53)"
+  - "Pr_s correction (Pr/Pr_s)^0.25 is optional; set to 1.0 when wall temperature is unavailable"
+source:
+  authors: ["Žukauskas, A."]
+  year: 1972
+  title: "Heat Transfer from Tubes in Crossflow"
+  journal: "Advances in Heat Transfer"
+  volume: 8
+  pages: "93-160"
+  doi: "10.1016/S0065-2717(08)70038-8"
+  url: ""
+notes:
+  - "Incropera Table 7.4: Re 1-40: C=0.75, m=0.4; Re 40-1000: C=0.51, m=0.5; Re 1e3-2e5: C=0.26, m=0.6; Re 2e5-1e6: C=0.076, m=0.7"
+  - "Pr exponent n is Pr-dependent: 0.37 for Pr <= 10, 0.36 for Pr > 10 (verified from Incropera Eq 7.53)"
+  - "Wall Prandtl correction (Pr/Pr_s)^0.25 accounts for variable fluid properties near wall"
+  - "UNCERTAINTY NOTE: ±25% is a textbook-attributed figure (Incropera 7th ed. Table 7.4, p. 425; Cengel 5th ed.). The primary source (Žukauskas 1972, Adv. Heat Transfer 8:93-160) is available (advances_heat_transfer_vol8_1972.pdf). The chapter (pp. 93-160) was reviewed and does NOT contain an explicit ±% uncertainty statement for the single-cylinder correlation. The 25% represents the textbook-consensus scatter band. UNCERTAIN — primary source reviewed but no explicit bound found."
+  - "Valid for 0.7 ≤ Pr ≤ 500, covering both gases and liquids"

@@ -1,0 +1,35 @@
+key: internal.shah_laminar
+family: convection_internal
+title: "Shah (1978)"
+output: Nu
+formula_latex: >
+  Nu = 3.66 + \frac{0.0668 \cdot Gz}{1 + 0.04 \cdot Gz^{2/3}},
+  \quad Gz = Re \cdot Pr \cdot \frac{D}{L}
+flow_regime: laminar
+boundary_conditions: [constant_wall_temperature]
+required_inputs: [Reynolds, Prandtl]
+validity:
+  geometry_type: circular_tube
+  re_max: 2300
+  pr_min: 0.0
+  notes: "Laminar thermally developing (Graetz) flow; valid for all Pr; returns Nu=3.66 when L is not provided (fully developed limit)"
+literature_uncertainty_pct: 10
+assumptions:
+  - "Laminar flow in circular tube (Re < 2300)"
+  - "Thermally developing, hydrodynamically fully developed flow"
+  - "Uniform wall temperature (UWT) boundary condition"
+  - "Fluid properties at bulk mean temperature"
+source:
+  authors: ["Shah, R.K."]
+  year: 1978
+  title: "Thermal entry length solutions for the circular tube and parallel plates"
+  journal: "Proc. National Heat Mass Transfer Conference, Indian Institute of Technology, Bombay, India"
+  volume: 2
+  pages: "11-75"
+  doi: ""
+  url: ""
+notes:
+  - "Valid for all Prandtl numbers; thermally developing (Graetz) solution for UWT boundary condition"
+  - "Returns fully developed Nu = 3.66 when developing length not provided or Gz → 0"
+  - "Gz = Re·Pr·(D/L) is the Graetz number; larger Gz indicates thermally developing flow"
+  - "UNCERTAINTY NOTE: ±10% uncertainty is a textbook-consensus estimate for laminar developing-flow correlations. The original paper (Shah 1978, Proc. National HMT Conference, Indian Institute of Technology, Bombay) is not available in any accessible digital form. Cannot be verified against primary source. UNCERTAIN."

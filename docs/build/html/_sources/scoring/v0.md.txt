@@ -1,0 +1,15 @@
+# Scoring v0
+
+Scoring v0 is intentionally simple and deterministic.
+
+Current factors:
+- validity fit
+- pedigree (placeholder)
+- geometry match
+
+Planned additions:
+- extrapolation penalties
+- regime fidelity
+- boundary-condition fidelity
+- correction completeness
+- benchmark support

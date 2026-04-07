@@ -1,0 +1,20 @@
+{
+  "fluid": {
+    "density": 997.0,
+    "viscosity": 0.00089,
+    "thermal_conductivity": 0.6,
+    "heat_capacity": 4180.0
+  },
+  "geometry": {
+    "geometry_type": "circular_tube",
+    "characteristic_length": 0.01,
+    "hydraulic_diameter": 0.01,
+    "roughness": 0.0
+  },
+  "boundary": {
+    "boundary_type": "constant_wall_temperature"
+  },
+  "flow": {
+    "velocity": 2.0
+  }
+}

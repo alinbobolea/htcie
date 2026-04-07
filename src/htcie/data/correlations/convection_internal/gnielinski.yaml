@@ -1,0 +1,39 @@
+key: internal.gnielinski
+family: convection_internal
+title: "Gnielinski (1976)"
+output: Nu
+formula_latex: >
+  Nu = \frac{(f/8)(Re - 1000)Pr}{1 + 12.7\sqrt{f/8}(Pr^{2/3} - 1)},
+  \quad f = (0.790 \ln Re - 1.64)^{-2}
+flow_regime: transitional_turbulent
+boundary_conditions: [constant_wall_temperature, constant_heat_flux]
+required_inputs: [Reynolds, Prandtl]
+validity:
+  geometry_type: circular_tube
+  re_min: 3000
+  re_max: 5000000
+  pr_min: 0.5
+  pr_max: 2000
+  ld_min: 10
+  notes: "Extends Petukhov (1970) down to Re = 3000 using (Re - 1000) modification"
+literature_uncertainty_pct: 10
+assumptions:
+  - "Smooth circular tube, fully developed or thermally developing turbulent flow"
+  - "Fluid properties at bulk mean temperature"
+  - "Petukhov friction factor used: $f = (0.790 \\ln Re - 1.64)^{-2}$"
+  - "More accurate than Dittus-Boelter especially for $3000 < Re < 10{,}000$"
+source:
+  authors: ["Gnielinski, V."]
+  year: 1976
+  title: "New equations for heat and mass transfer in turbulent pipe and channel flow"
+  journal: "International Chemical Engineering"
+  volume: 16
+  issue: 2
+  pages: "359-368"
+  doi: ""
+  url: ""
+notes:
+  - "Preferred over Dittus-Boelter for 3000 < Re < 10000 (transitional regime)"
+  - "UNCERTAINTY NOTE: The ±10% figure is cited in Cengel & Ghajar 5th ed. Section 8-5, Eq. 8-58. The 1976 original paper (Int. Chem. Eng. 16:359-368) is not available in any open-access form and cannot be directly verified. The 2013 update paper (Gnielinski, IJHMT 63:134-140, p. 135) does not restate the ±10% bound explicitly. Literature_uncertainty_pct: 10 is retained as a textbook-consensus value."
+  - "Updated formulation available: Gnielinski (2013), Int. J. Heat Mass Transfer 63:134-140, DOI: 10.1016/j.ijheatmasstransfer.2013.04.015"
+  - "Corrigendum: Gnielinski (2014), DOI: 10.1016/j.ijheatmasstransfer.2014.10.063 (fixes missing exponent)"

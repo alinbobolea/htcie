@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>htcie Evaluation Report</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      color: #1a1a1a;
+      line-height: 1.5;
+    }
+    h1 { border-bottom: 2px solid #2563eb; padding-bottom: 0.5rem; color: #1a1a1a; }
+    h2 { color: #1a1a1a; margin-top: 2.5rem; margin-bottom: 0.5rem; }
+    h3 { color: #1a1a1a; margin-top: 1.25rem; margin-bottom: 0.25rem; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 0.75rem 0 1.5rem 0;
+      font-size: 0.9rem;
+    }
+    th {
+      background: #f1f5f9;
+      text-align: left;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #cbd5e1;
+      font-weight: 600;
+    }
+    td { padding: 0.5rem 0.75rem; border: 1px solid #e2e8f0; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    code {
+      background: #f1f5f9;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-size: 0.85em;
+      font-family: monospace;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.65rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .badge-high   { background: #dcfce7; color: #166534; }
+    .badge-medium { background: #fef9c3; color: #854d0e; }
+    .badge-low    { background: #fee2e2; color: #991b1b; }
+    .meta { color: #64748b; font-size: 0.9rem; margin-bottom: 1rem; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    ul { margin: 0.25rem 0 1rem 0; padding-left: 1.5rem; }
+    li { margin-bottom: 0.2rem; }
+    .note { color: #64748b; font-style: italic; }
+    .warning { color: #92400e; background: #fef3c7; padding: 0.5rem 0.75rem; border-radius: 4px; margin: 0.5rem 0; }
+    .excluded-list { list-style: none; padding: 0; margin: 0.75rem 0 1.5rem 0; }
+    .excluded-item {
+      display: flex; gap: 1rem; align-items: baseline;
+      padding: 0.5rem 0.85rem;
+      border-left: 3px solid #fca5a5;
+      background: #fff5f5;
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 0.4rem;
+    }
+    .excluded-key { font-weight: 600; font-size: 0.875rem; color: #991b1b; white-space: nowrap; }
+    .excluded-sep { color: #9ca3af; }
+    .excluded-reason { color: #374151; font-size: 0.875rem; }
+    footer {
+      margin-top: 3rem;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 1rem;
+      color: #94a3b8;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+  </style>
+  <script>
+    window.MathJax = {tex: {inlineMath: [['$', '$']]}};
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+</head>
+<body>
+
+<h1>htcie Evaluation Report</h1>
+<p class="meta">
+  <strong>Engine version:</strong> {{ report.engine_version }} &nbsp;|&nbsp;
+  <strong>Timestamp:</strong> {{ report.timestamp }} &nbsp;|&nbsp;
+  <strong>Confidence:</strong>
+  <span class="badge badge-{{ report.confidence }}">{{ report.confidence | capitalize }}</span>
+</p>
+<p class="meta">
+  <strong>Re</strong> = {{ "%.0f" | format(report.derived.reynolds) }} &nbsp;·&nbsp;
+  <strong>Pr</strong> = {{ "%.3f" | format(report.derived.prandtl) }}
+  {%- if report.derived.graetz is not none %} &nbsp;·&nbsp;
+  <strong>Gz</strong> = {{ "%.2f" | format(report.derived.graetz) }}
+  {%- endif %}
+  {%- if report.derived.entry_length_ratio is not none %} &nbsp;·&nbsp;
+  <strong>L/D</strong> = {{ "%.2f" | format(report.derived.entry_length_ratio) }}
+  {%- endif %}
+  {%- if report.derived.pitch_ratio_transverse is not none %} &nbsp;·&nbsp;
+  <strong>S<sub>T</sub>/D</strong> = {{ "%.3f" | format(report.derived.pitch_ratio_transverse) }}
+  {%- endif %}
+  {%- if report.derived.pitch_ratio_longitudinal is not none %} &nbsp;·&nbsp;
+  <strong>S<sub>L</sub>/D</strong> = {{ "%.3f" | format(report.derived.pitch_ratio_longitudinal) }}
+  {%- endif %}
+</p>
+
+<h2>Input Conditions</h2>
+<div class="grid-2">
+  <div>
+    <h3>Fluid Properties</h3>
+    <table>
+      <tr><th>Parameter</th><th>Value</th></tr>
+      <tr><td>Density</td><td>{{ report.input_state.fluid.density }} kg/m³</td></tr>
+      <tr><td>Viscosity</td><td>{{ report.input_state.fluid.viscosity }} Pa·s</td></tr>
+      <tr><td>Thermal conductivity</td><td>{{ report.input_state.fluid.thermal_conductivity }} W/m·K</td></tr>
+      <tr><td>Heat capacity</td><td>{{ report.input_state.fluid.heat_capacity }} J/kg·K</td></tr>
+      {% if report.input_state.fluid.wall_viscosity is not none %}
+      <tr><td>Wall viscosity</td><td>{{ report.input_state.fluid.wall_viscosity }} Pa·s</td></tr>
+      {% endif %}
+    </table>
+  </div>
+  <div>
+    <h3>Geometry &amp; Flow</h3>
+    <table>
+      <tr><th>Parameter</th><th>Value</th></tr>
+      <tr><td>Geometry type</td><td>{{ report.input_state.geometry.geometry_type }}</td></tr>
+      <tr><td>Characteristic length</td><td>{{ report.input_state.geometry.characteristic_length }} m</td></tr>
+      <tr><td>Hydraulic diameter</td><td>{{ report.input_state.geometry.hydraulic_diameter }} m</td></tr>
+      <tr><td>Boundary type</td><td>{{ report.input_state.boundary.boundary_type }}</td></tr>
+      <tr><td>Velocity</td><td>{{ report.input_state.flow.velocity }} m/s</td></tr>
+    </table>
+  </div>
+</div>
+
+<h2>Applicable Correlations</h2>
+{% if report.applicable %}
+<ul>
+  {% for key in report.applicable %}
+  <li><code>{{ key }}</code></li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="note">No applicable correlations found for the given state.</p>
+{% endif %}
+
+<h2>Evaluations</h2>
+{% if report.evaluations %}
+<table>
+  <tr>
+    <th>Method</th>
+    <th>Nu</th>
+    <th>h [W/m²·K]</th>
+    <th>h_low</th>
+    <th>h_high</th>
+    <th>±%</th>
+  </tr>
+  {% for e in report.evaluations %}
+  <tr>
+    <td><code>{{ e.key }}</code></td>
+    <td>{{ "%.2f" | format(e.value) }}</td>
+    <td>{{ "%.1f" | format(e.h) if e.h is not none else "N/A" }}</td>
+    <td>{{ "%.1f" | format(e.h_low) if e.h_low is not none else "N/A" }}</td>
+    <td>{{ "%.1f" | format(e.h_high) if e.h_high is not none else "N/A" }}</td>
+    <td>{{ "%.1f" | format(e.uncertainty_pct) if e.uncertainty_pct is not none else "N/A" }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p class="note">No evaluations (no applicable correlations).</p>
+{% endif %}
+
+<h2>Ranking</h2>
+{% if report.ranking %}
+{% for r in report.ranking %}
+<h3>#{{ loop.index }} &nbsp; <code>{{ r.key }}</code> &nbsp; — &nbsp; Score: <strong>{{ "%.3f" | format(r.score) }}</strong></h3>
+<table>
+  <tr><th>Factor</th><th>Value</th></tr>
+  {% for factor, val in r.breakdown.items() %}
+  <tr><td>{{ factor }}</td><td>{{ "%.3f" | format(val) }}</td></tr>
+  {% endfor %}
+</table>
+{% endfor %}
+{% else %}
+<p class="note">No ranking data.</p>
+{% endif %}
+
+{% if charts %}
+<h2>Charts</h2>
+<div style="overflow-x: auto; border: 1px solid #cbd5e1; border-radius: 4px;">{{ charts.ranking | safe }}</div>
+<div style="overflow-x: auto; margin-top: 1.5rem; border: 1px solid #cbd5e1; border-radius: 4px;">{{ charts.uncertainty | safe }}</div>
+{% endif %}
+
+<h2>Spread Summary</h2>
+<table>
+  <tr><th>Metric</th><th>Value</th></tr>
+  <tr><td>Method count</td><td>{{ report.spread.count }}</td></tr>
+  <tr>
+    <td>Mean h [W/m²·K]</td>
+    <td>{{ "%.2f" | format(report.spread.mean) if report.spread.mean is not none else "N/A" }}</td>
+  </tr>
+  <tr>
+    <td>Std dev</td>
+    <td>{{ "%.2f" | format(report.spread.stdev) if report.spread.stdev is not none else "N/A" }}</td>
+  </tr>
+  <tr>
+    <td>Relative spread</td>
+    <td>
+      {% if report.spread.relative_spread is not none %}
+        {{ "%.1f" | format(report.spread.relative_spread * 100) }}%
+      {% else %}
+        N/A
+      {% endif %}
+    </td>
+  </tr>
+</table>
+
+<h2>Explanation</h2>
+{% if report.explanation.best_method %}
+<p class="meta">Scoring rationale for <code>{{ report.explanation.best_method }}</code></p>
+<table>
+  <tr><th>Score</th><td>{{ "%.3f" | format(report.explanation.best_score) }}</td></tr>
+  <tr><th>Confidence</th><td>
+    <span class="badge badge-{{ report.explanation.confidence_class }}">
+      {{ report.explanation.confidence_class | capitalize }}
+    </span>
+  </td></tr>
+</table>
+
+{% if report.explanation.key_assumptions %}
+<h2>Key Assumptions</h2>
+<ul>
+  {% for assumption in report.explanation.key_assumptions %}
+  <li>{{ assumption }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if report.explanation.extrapolation_warnings %}
+<h2>Extrapolation Warnings</h2>
+{% for warning in report.explanation.extrapolation_warnings %}
+<div class="warning">⚠ {{ warning }}</div>
+{% endfor %}
+{% endif %}
+
+<h2>Recommendation</h2>
+<p>{{ report.explanation.recommendation_note }}</p>
+{% else %}
+<p class="note">No recommendation — no applicable correlations.</p>
+{% endif %}
+
+<h2>Excluded Correlations</h2>
+{% if report.excluded %}
+<ul class="excluded-list">
+  {% for exc in report.excluded %}
+  <li class="excluded-item">
+    <span class="excluded-key">{{ exc.key.split('.')[-1] }}</span>
+    <span class="excluded-sep">—</span>
+    <span class="excluded-reason">{{ exc.reason }} <code style="font-size:0.78rem;color:#64748b;">{{ exc.key }}</code></span>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="note">None.</p>
+{% endif %}
+
+<footer>
+  Generated by htcie v{{ report.engine_version }} — {{ report.timestamp }}
+</footer>
+
+</body>
+</html>

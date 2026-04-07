@@ -1,0 +1,35 @@
+key: external.pohlhausen_plate
+family: convection_external
+title: "Pohlhausen (1921)"
+output: Nu
+formula_latex: >
+  Nu_L = 0.664 \cdot Re_L^{1/2} \cdot Pr^{1/3}
+flow_regime: laminar
+boundary_conditions: [constant_wall_temperature]
+required_inputs: [Reynolds, Prandtl]
+validity:
+  geometry_type: flat_plate
+  re_max: 500000
+  pr_min: 0.6
+  notes: "Laminar boundary layer over isothermal flat plate; Re_L < 5e5; Pr >= 0.6"
+literature_uncertainty_pct: 10
+assumptions:
+  - "Isothermal flat plate with laminar boundary layer ($Re_L < 5 \\times 10^5$)"
+  - "Prandtl number $Pr \\geq 0.6$ for $Pr^{1/3}$ approximation to be valid"
+  - "Zero pressure gradient (Blasius velocity profile)"
+  - "Fluid properties at film temperature"
+source:
+  authors: ["Pohlhausen, E."]
+  year: 1921
+  title: "Der Wärmeaustausch zwischen festen Körpern und Flüssigkeiten mit kleiner Reibung und kleiner Wärmeleitung"
+  journal: "Zeitschrift für Angewandte Mathematik und Mechanik (ZAMM)"
+  volume: 1
+  issue: 2
+  pages: "115-121"
+  doi: "10.1002/zamm.19210010205"
+  url: ""
+notes:
+  - "Classic laminar flat-plate solution derived from similarity solution of boundary-layer equations"
+  - "Original German-language paper only; no published English translation"
+  - "Pr^(1/3) approximation is valid for Pr >= 0.6; exact solution requires numerical integration for low Pr"
+  - "UNCERTAINTY NOTE: ±10% uncertainty is a textbook-consensus estimate for laminar flat-plate correlations. The original paper (Pohlhausen 1921, ZAMM 1:115-121) is available (pohlhausen_1921_zamm.pdf, CC0) but presents the analytical solution only — no experimental scatter or ±% bound is stated. The ±10% is a typical accuracy attribution from heat transfer textbooks. UNCERTAIN — no explicit bound in primary source."

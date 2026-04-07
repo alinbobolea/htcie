@@ -1,0 +1,664 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Tube Banks" href="tube_banks.html"><link rel="prev" title="Internal Forced Convection" href="internal.html">
+
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>External Forced Convection - htcie documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">htcie  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <span class="sidebar-brand-text">htcie  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Correlations</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Correlations Catalog</a><input aria-label="Toggle navigation of Correlations Catalog" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="internal.html">Internal Forced Convection</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">External Forced Convection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tube_banks.html">Tube Banks</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../architecture/index.html">Architecture</a><input aria-label="Toggle navigation of Architecture" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/arch_overview.html">Architecture Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/scoring.html">Scoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/dev-log.html">Development Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/overview.html">htcie Architecture Overview</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/index.html">API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">More</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">htcie API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../methods/metadata-schema.html">Correlation Metadata Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scoring/v0.html">Scoring v0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gtm/summary.html">GTM Summary</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/correlations/external.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="external-forced-convection">
+<h1>External Forced Convection<a class="headerlink" href="#external-forced-convection" title="Link to this heading">¶</a></h1>
+<p>Five correlations for external forced convection over cylinders and flat plates.
+All correlations output the Nusselt number <span class="math notranslate nohighlight">\(Nu = h L / k\)</span>, where <span class="math notranslate nohighlight">\(L\)</span>
+is the characteristic length (outer diameter <span class="math notranslate nohighlight">\(D\)</span> for cylinders, plate
+length <span class="math notranslate nohighlight">\(L\)</span> for plates).</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 32.0%" />
+<col style="width: 30.0%" />
+<col style="width: 22.0%" />
+<col style="width: 8.0%" />
+<col style="width: 8.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Title</p></th>
+<th class="head"><p>Re Range</p></th>
+<th class="head"><p>Pr Range</p></th>
+<th class="head"><p>Year</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">external.churchill_bernstein</span></code></p></td>
+<td><p>Churchill-Bernstein (cylinder)</p></td>
+<td><p>All Re (composite)</p></td>
+<td><p>≥ 0.2</p></td>
+<td><p>1977</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">external.zukauskas_cylinder</span></code></p></td>
+<td><p>Žukauskas (cylinder)</p></td>
+<td><p>1 – 1,000,000</p></td>
+<td><p>0.7 – 500</p></td>
+<td><p>1972</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">external.hilpert</span></code></p></td>
+<td><p>Hilpert (cylinder)</p></td>
+<td><p>0.4 – 400,000</p></td>
+<td><p>—</p></td>
+<td><p>1933</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">external.pohlhausen_plate</span></code></p></td>
+<td><p>Pohlhausen (laminar flat plate)</p></td>
+<td><p>Re ≤ 500,000</p></td>
+<td><p>≥ 0.6</p></td>
+<td><p>1921</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">external.turbulent_plate</span></code></p></td>
+<td><p>Mixed Boundary Layer Flat Plate</p></td>
+<td><p>Re ≥ 500,000</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="correlation-formulas">
+<h2>Correlation formulas<a class="headerlink" href="#correlation-formulas" title="Link to this heading">¶</a></h2>
+<p><strong>Churchill-Bernstein (1977)</strong> — <code class="docutils literal notranslate"><span class="pre">external.churchill_bernstein</span></code></p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[Nu = 0.3 + \frac{0.62\,Re^{1/2}\,Pr^{1/3}}
+     {\left[1 + (0.4/Pr)^{2/3}\right]^{1/4}}
+     \left[1 + \left(\frac{Re}{282{,}000}\right)^{5/8}\right]^{4/5}\]</div>
+</div>
+<p>Composite correlation valid for all <span class="math notranslate nohighlight">\(Re\)</span> provided
+<span class="math notranslate nohighlight">\(Re \cdot Pr \geq 0.2\)</span>. Preferred all-Re correlation for cylinders in
+crossflow.</p>
+<p><strong>Žukauskas (1972)</strong> — <code class="docutils literal notranslate"><span class="pre">external.zukauskas_cylinder</span></code></p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[Nu = C\,Re^m\,Pr^{0.36}\,\left(\frac{Pr}{Pr_w}\right)^{0.25}\]</div>
+</div>
+<p>Tabular coefficients <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(m\)</span> are selected by <span class="math notranslate nohighlight">\(Re\)</span> band.
+The wall-Prandtl correction is omitted (set to 1) when
+<code class="docutils literal notranslate"><span class="pre">fluid.wall_viscosity</span></code> is not provided.</p>
+<p><strong>Hilpert (1933)</strong> — <code class="docutils literal notranslate"><span class="pre">external.hilpert</span></code></p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[Nu = C\,Re^m\,Pr^{1/3}\]</div>
+</div>
+<p>Tabular coefficients from the original Hilpert table. Valid for
+<span class="math notranslate nohighlight">\(0.4 \leq Re &lt; 400{,}000\)</span>.</p>
+<p><strong>Pohlhausen (1921)</strong> — <code class="docutils literal notranslate"><span class="pre">external.pohlhausen_plate</span></code></p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[Nu_L = 0.664\,Re_L^{1/2}\,Pr^{1/3}\]</div>
+</div>
+<p>Exact similarity solution for a laminar boundary layer on an isothermal flat
+plate. Valid for <span class="math notranslate nohighlight">\(Re_L &lt; 5 \times 10^5\)</span> and <span class="math notranslate nohighlight">\(Pr \geq 0.6\)</span>.</p>
+<p><strong>Mixed Boundary Layer Flat Plate</strong> — <code class="docutils literal notranslate"><span class="pre">external.turbulent_plate</span></code></p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[Nu_L = (0.037\,Re_L^{0.8} - 871)\,Pr^{1/3}\]</div>
+</div>
+<p>Accounts for the laminar leading-edge region assuming transition at
+<span class="math notranslate nohighlight">\(Re_{x,c} = 5 \times 10^5\)</span>. Valid for <span class="math notranslate nohighlight">\(Re_L \geq 5 \times 10^5\)</span>.</p>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">external.churchill_bernstein</span></code> is the preferred all-Re correlation for
+cylinders in crossflow.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">external.pohlhausen_plate</span></code> and <code class="docutils literal notranslate"><span class="pre">external.turbulent_plate</span></code> together
+cover the full Re range for flat plates, with the transition at
+<span class="math notranslate nohighlight">\(Re_L = 5 \times 10^5\)</span>.</p></li>
+<li><p>Characteristic length for plates is the plate length <span class="math notranslate nohighlight">\(L\)</span>; for
+cylinders it is the outer diameter <span class="math notranslate nohighlight">\(D\)</span>.</p></li>
+<li><p>For cylinders, <code class="docutils literal notranslate"><span class="pre">external.hilpert</span></code> is the older alternative to
+Churchill-Bernstein and does not include a Prandtl-ratio correction.</p></li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
+<section id="formulation-equations">
+<h3>Formulation (equations)<a class="headerlink" href="#formulation-equations" title="Link to this heading">¶</a></h3>
+<p><strong>Churchill-Bernstein (1977)</strong>: Churchill, S.W. and Bernstein, M., “A correlating equation for
+forced convection from gases and liquids to a circular cylinder in crossflow,” <em>Journal of Heat
+Transfer (ASME)</em>, vol. 99, no. 2, pp. 300–306, May 1977, DOI: 10.1115/1.3450685. Textbook:
+Incropera, F.P., DeWitt, D.P., Bergman, T.L., and Lavine, A.S., <em>Fundamentals of Heat and Mass
+Transfer</em>, 7th ed., Wiley, 2011, Sec. 7.4, Eq. 7.54, p. 432; Cengel, Y.A. and Ghajar, A.J.,
+<em>Heat and Mass Transfer</em>, 5th ed., McGraw-Hill, 2015, Sec. 7-3, Eq. 7-35.</p>
+<p><strong>Žukauskas (1972)</strong>: Žukauskas, A., “Heat Transfer from Tubes in Crossflow,” in <em>Advances in
+Heat Transfer</em>, vol. 8, eds. Hartnett, J.P. and Irvine, T.F., Academic Press, New York,
+pp. 93–160, 1972, DOI: 10.1016/S0065-2717(08)70038-8. Full volume PDF available (Internet
+Archive, identifier AdvancesInHeatTransfer). Textbook: Incropera et al., 7th ed., Sec. 7.4,
+Eq. 7.53, Table 7.4, p. 425.</p>
+<p><strong>Hilpert (1933)</strong>: Hilpert, R., “Wärmeabgabe von geheizten Drähten und Rohren im Luftstrom”
+(Heat dissipation from heated wires and tubes in airflow), <em>Forschung auf dem Gebiete des
+Ingenieurwesens</em>, vol. 4, no. 5, pp. 215–224, 1933, DOI: 10.1007/BF02719754. (German-language
+original; Springer paywall.) The C and m tabular constants used here are the recalculated values
+of Incropera et al., 7th ed., Sec. 7.4, Table 7.1, p. 421, which incorporate corrections from:
+Fand, R.M. and Keswani, K.K., “Recalculation of some data of Hilpert for heat transfer from
+cylinders in crossflow,” <em>Journal of Heat Transfer (ASME)</em>, vol. 95, no. 2, p. 224, 1973,
+DOI: 10.1115/1.3450030.</p>
+<p><strong>Pohlhausen (1921)</strong>: Pohlhausen, E., “Der Wärmeaustausch zwischen festen Körpern und
+Flüssigkeiten mit kleiner Reibung und kleiner Wärmeleitung,” <em>Zeitschrift für Angewandte
+Mathematik und Mechanik (ZAMM)</em>, vol. 1, no. 2, pp. 115–121, 1921,
+DOI: 10.1002/zamm.19210010205. (German-language original; PDF available from Zenodo record
+1447401, licensed CC0.) Textbook: Incropera et al., 7th ed., Sec. 7.2, Eq. 7.30, p. 402;
+Cengel &amp; Ghajar, 5th ed., Sec. 7-1, Eq. 7-21.</p>
+<p><strong>Mixed boundary layer flat plate (turbulent)</strong>: This correlation is not attributable to a
+single original paper. It combines the turbulent flat-plate result from the Colburn–Reynolds
+analogy with a laminar leading-edge correction for transition at
+<span class="math notranslate nohighlight">\(Re_{x,c} = 5 \times 10^5\)</span>. Primary textbook source: Incropera et al., 7th ed.,
+Sec. 7.2.3, Eq. 7.38, p. 407; Cengel &amp; Ghajar, 5th ed., Sec. 7-2, Eq. 7-24. Theoretical
+basis for the <span class="math notranslate nohighlight">\(0.037\,Re^{0.8}\)</span> turbulent term: Schlichting, H., <em>Boundary Layer Theory</em>,
+7th ed., McGraw-Hill, 1979, Ch. 21.</p>
+</section>
+<section id="variable-definitions">
+<h3>Variable definitions<a class="headerlink" href="#variable-definitions" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Nu = h L / k\)</span> where <span class="math notranslate nohighlight">\(L\)</span> is the characteristic length (cylinder: outer diameter
+<span class="math notranslate nohighlight">\(D\)</span>; plate: length <span class="math notranslate nohighlight">\(L\)</span>): Incropera et al., 7th ed., Secs. 7.2 and 7.4.</p></li>
+<li><p><span class="math notranslate nohighlight">\(Re = \rho u_\infty L / \mu\)</span> (free-stream Reynolds number): Incropera et al.,
+7th ed., Sec. 7.1.</p></li>
+<li><p><span class="math notranslate nohighlight">\(Pr = \mu c_p / k\)</span> (Prandtl number): Incropera et al., 7th ed., Sec. 7.1.</p></li>
+<li><p><span class="math notranslate nohighlight">\(Pr_w\)</span> (Prandtl number at wall/surface temperature, Žukauskas):
+Žukauskas (1972), pp. 93–160; Incropera et al., 7th ed., Table 7.4, p. 425.</p></li>
+<li><p><span class="math notranslate nohighlight">\(C\)</span>, <span class="math notranslate nohighlight">\(m\)</span> (tabular coefficients, Žukauskas cylinder): Incropera et al., 7th ed.,
+Table 7.4, p. 425, sourced from Žukauskas (1972).</p></li>
+<li><p><span class="math notranslate nohighlight">\(C\)</span>, <span class="math notranslate nohighlight">\(m\)</span> (tabular coefficients, Hilpert): Incropera et al., 7th ed.,
+Table 7.1, p. 421 (recalculated values incorporating Fand &amp; Keswani 1973 corrections).</p></li>
+<li><p>Film temperature <span class="math notranslate nohighlight">\(T_f = (T_s + T_\infty) / 2\)</span> (Churchill-Bernstein, Hilpert,
+Pohlhausen, turbulent plate property evaluation): Incropera et al., 7th ed., Secs. 7.2
+and 7.4.</p></li>
+<li><p>Free-stream temperature <span class="math notranslate nohighlight">\(T_\infty\)</span> (property reference, Žukauskas):
+Žukauskas (1972); Incropera et al., 7th ed., Sec. 7.4, Table 7.4.</p></li>
+</ul>
+</section>
+<section id="range-of-applicability">
+<h3>Range of applicability<a class="headerlink" href="#range-of-applicability" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Churchill-Bernstein</strong> all Re (0–4×10<sup>7</sup>), <span class="math notranslate nohighlight">\(Re \cdot Pr \geq 0.2\)</span>:
+Churchill &amp; Bernstein (1977), pp. 300–306; Incropera et al., 7th ed., Sec. 7.4,
+Eq. 7.54, p. 432.</p></li>
+<li><p><strong>Žukauskas (cylinder)</strong> Re 1–1,000,000; Pr 0.7–500; properties at <span class="math notranslate nohighlight">\(T_\infty\)</span>;
+<span class="math notranslate nohighlight">\(Pr_w\)</span> at surface temperature:
+Incropera et al., 7th ed., Table 7.4, p. 425; Žukauskas (1972).</p></li>
+<li><p><strong>Hilpert</strong> Re 0.4–400,000; Pr ≈ 0.7 (gases); properties at film temperature:
+Hilpert (1933); Incropera et al., 7th ed., Table 7.1, p. 421.</p></li>
+<li><p><strong>Pohlhausen</strong> <span class="math notranslate nohighlight">\(Re_L &lt; 5 \times 10^5\)</span>; Pr ≥ 0.6; properties at film temperature:
+Incropera et al., 7th ed., Sec. 7.2, Eq. 7.30, p. 402.</p></li>
+<li><p><strong>Turbulent plate</strong> <span class="math notranslate nohighlight">\(Re_L \geq 5 \times 10^5\)</span>; Pr 0.6–60; properties at film
+temperature: Incropera et al., 7th ed., Sec. 7.2.3, Eq. 7.38, p. 407. Upper Re limit:
+YAML data records <span class="math notranslate nohighlight">\(Re_{max} = 10^7\)</span>; Incropera Eq. 7.38 states validity up to
+<span class="math notranslate nohighlight">\(10^8\)</span>. The page table does not show an upper bound; <span class="math notranslate nohighlight">\(10^7\)</span> is documented
+in the correlation metadata.</p></li>
+</ul>
+</section>
+<section id="assumptions">
+<h3>Assumptions<a class="headerlink" href="#assumptions" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Isothermal cylinder in crossflow (Churchill-Bernstein, Žukauskas, Hilpert):
+Churchill &amp; Bernstein (1977); Žukauskas (1972); Hilpert (1933); Incropera et al.,
+7th ed., Secs. 7.4.</p></li>
+<li><p>Properties at film temperature (Churchill-Bernstein, Hilpert, Pohlhausen, turbulent plate):
+Incropera et al., 7th ed., Secs. 7.2 and 7.4.</p></li>
+<li><p>Properties at free-stream temperature <span class="math notranslate nohighlight">\(T_\infty\)</span>, with <span class="math notranslate nohighlight">\(Pr_w\)</span> at wall
+temperature (Žukauskas): Žukauskas (1972); Incropera et al., 7th ed., Table 7.4.</p></li>
+<li><p>Isothermal flat plate, zero pressure gradient, Blasius velocity profile (Pohlhausen):
+Pohlhausen (1921); Incropera et al., 7th ed., Sec. 7.2.</p></li>
+<li><p>Mixed laminar–turbulent boundary layer with transition at <span class="math notranslate nohighlight">\(Re_{x,c} = 5 \times 10^5\)</span>
+(turbulent plate): Incropera et al., 7th ed., Sec. 7.2.3, Eq. 7.38; Cengel &amp; Ghajar,
+5th ed., Sec. 7-2.</p></li>
+<li><p><span class="math notranslate nohighlight">\(Pr^{1/3}\)</span> approximation valid for Pr ≥ 0.6 (Pohlhausen, Hilpert): Incropera et al.,
+7th ed., Secs. 7.2 and 7.4.</p></li>
+</ul>
+</section>
+<section id="uncertainty-error-bounds">
+<h3>Uncertainty / error bounds<a class="headerlink" href="#uncertainty-error-bounds" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Churchill-Bernstein ±20%</strong>: <strong>UNCERTAIN</strong> — the original paper (Churchill &amp; Bernstein
+1977, pp. 300–306, reviewed during 2026-03-28 audit) does not state ±20%. Page 304
+characterizes Eq. (9) as “proposed as a lower bound for the computed and experimental
+values of <span class="math notranslate nohighlight">\(\overline{Nu}_D\)</span>… for all Re and Pr such that <span class="math notranslate nohighlight">\(Re\,Pr &gt; 0.2\)</span>”,
+noting that “data generally fall somewhat above equation (9).” No explicit ±% uncertainty
+bound appears anywhere in the paper. The ±20% is a textbook-attributed estimate
+(Incropera et al., 7th ed., Sec. 7.4).</p></li>
+<li><p><strong>Žukauskas (cylinder) ±25%</strong>: textbook-attributed (Incropera 7th ed., Table 7.4, p. 425;
+Cengel &amp; Ghajar 5th ed.). The primary source (Žukauskas 1972, “Heat Transfer from Tubes in
+Crossflow,” <em>Advances in Heat Transfer</em>, Vol. 8, pp. 93–160) was reviewed in full during the 2026-03-28 audit; the single-cylinder
+correlation section (pp. 93–160) contains no explicit ±% uncertainty statement.
+<strong>UNCERTAIN</strong> — primary source reviewed; no explicit bound found.</p></li>
+<li><p><strong>Hilpert ±20%</strong>: textbook-attributed. The Hilpert (1933) primary source is paywalled
+(Springer, DOI: 10.1007/BF02719754); no explicit ±% was identified in available
+excerpts. Note: the original Hilpert (1933) experimental data covered Re 2.1–231,000;
+the extended range Re 0.4–400,000 used here reflects the recalculated constants of
+Fand &amp; Keswani (1973) as tabulated in Incropera et al., 7th ed., Table 7.1.
+<strong>UNCERTAIN</strong> — primary source not accessible.</p></li>
+<li><p><strong>Pohlhausen ±10%</strong>: <strong>UNCERTAIN</strong> — the primary source (Pohlhausen 1921, ZAMM
+1(2):115–121, PDF available CC0) presents an analytical similarity solution only;
+no experimental scatter or ±% bound is stated. The ±10% is a textbook-consensus
+estimate for laminar flat-plate correlations.</p></li>
+<li><p><strong>Turbulent plate ±20%</strong>: <strong>UNCERTAIN</strong> — this correlation has no single original
+paper. It is a standard textbook result combining the Colburn turbulent boundary layer
+formula with a laminar leading-edge correction (Incropera 7th ed. Sec. 7.2.3, Eq. 7.38,
+p. 407). No primary source states an explicit ±% bound.</p></li>
+</ul>
+</section>
+<section id="missing-references">
+<h3>Missing references<a class="headerlink" href="#missing-references" title="Link to this heading">¶</a></h3>
+<p>None identified for this page. All equations and constants are traceable to sources listed
+above (see flags under individual entries for items marked UNCERTAIN).</p>
+</section>
+<section id="traceability-mapping">
+<h3>Traceability mapping<a class="headerlink" href="#traceability-mapping" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Churchill-Bernstein equation (all constants: 0.3, 0.62, 0.4, 282,000, 5/8, 4/5)</strong> →
+Churchill &amp; Bernstein (1977), J. Heat Transfer 99(2):300–306, DOI: 10.1115/1.3450685;
+Incropera et al., 7th ed., Eq. 7.54, p. 432.</p></li>
+<li><p><strong>Churchill-Bernstein</strong> <span class="math notranslate nohighlight">\(Re \cdot Pr \geq 0.2\)</span> <strong>criterion</strong> → Churchill &amp; Bernstein
+(1977), ibid.; Incropera et al., 7th ed., Sec. 7.4, p. 432.</p></li>
+<li><p><strong>Churchill-Bernstein Re range (0–4×10</strong> <sup>7</sup> <strong>)</strong> → Churchill &amp; Bernstein (1977),
+ibid.; Incropera et al., 7th ed., Sec. 7.4, p. 432.</p></li>
+<li><p><strong>Žukauskas cylinder equation form</strong> <span class="math notranslate nohighlight">\(C\,Re^m\,Pr^{0.36}\,(Pr/Pr_w)^{0.25}\)</span> →
+Žukauskas (1972), Adv. Heat Transfer 8:93–160, Eq. 33; Incropera et al., 7th ed., Eq. 7.53,
+Table 7.4, p. 425. <strong>Flag: the Pr exponent shown on this page as 0.36 is a simplification.
+The primary source (Žukauskas 1972, Eq. 33) and Incropera Eq. 7.53 use n = 0.37 for
+Pr ≤ 10 and n = 0.36 for Pr &gt; 10. The single-value exponent 0.36 understates the Pr
+sensitivity for fluids with Pr ≤ 10.</strong></p></li>
+<li><p><strong>Žukauskas cylinder C, m tabular coefficients</strong> → Incropera et al., 7th ed., Table 7.4,
+p. 425, sourced from Žukauskas (1972). Verified against Žukauskas (1972) OCR extract:
+Re 1–40: C=0.75, m=0.4; Re 40–1,000: C=0.51, m=0.5; Re 1,000–200,000: C=0.26, m=0.6;
+Re 200,000–1,000,000: C=0.076, m=0.7.</p></li>
+<li><p><strong>Žukauskas cylinder Re 1–1,000,000; Pr 0.7–500</strong> → Incropera et al., 7th ed., Table 7.4,
+p. 425; Žukauskas (1972).</p></li>
+<li><p><strong>Žukauskas cylinder</strong> <span class="math notranslate nohighlight">\((Pr/Pr_w)^{0.25}\)</span> <strong>correction</strong> → Žukauskas (1972), Eq. 33
+(confirmed by OCR of Žukauskas 1972, <em>Advances in Heat Transfer</em>, Vol. 8); Incropera et al., 7th ed.,
+Eq. 7.53.</p></li>
+<li><p><strong>Hilpert equation form</strong> <span class="math notranslate nohighlight">\(C\,Re^m\,Pr^{1/3}\)</span> → Hilpert (1933), Forschung auf dem
+Gebiete des Ingenieurwesens 4(5):215–224; Incropera et al., 7th ed., Table 7.1, p. 421.</p></li>
+<li><p><strong>Hilpert C, m tabular coefficients (five Re bands)</strong> → Incropera et al., 7th ed.,
+Table 7.1, p. 421 (recalculated per Fand &amp; Keswani 1973, DOI: 10.1115/1.3450030).
+Note: the data YAML cites DOI 10.1007/BF02715487 for Hilpert (1933) while the references
+YAML cites DOI 10.1007/BF02719754. <strong>Flag: these two DOIs differ; the correct DOI for
+Hilpert (1933) should be verified. Both are Springer BF-format DOIs for the same journal.</strong></p></li>
+<li><p><strong>Hilpert Re 0.4–400,000; properties at film temperature</strong> → Hilpert (1933); Incropera
+et al., 7th ed., Table 7.1, p. 421.</p></li>
+<li><p><strong>Pohlhausen coefficient 0.664</strong> → Pohlhausen (1921), ZAMM 1(2):115–121,
+DOI: 10.1002/zamm.19210010205 (PDF: Zenodo record 1447401, CC0); Incropera et al.,
+7th ed., Eq. 7.30, p. 402.</p></li>
+<li><p><strong>Pohlhausen</strong> <span class="math notranslate nohighlight">\(Re_L^{1/2}\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(Pr^{1/3}\)</span> <strong>exponents</strong> → Pohlhausen (1921),
+ibid.; Incropera et al., 7th ed., Eq. 7.30.</p></li>
+<li><p><strong>Pohlhausen Re</strong> <span class="math notranslate nohighlight">\(&lt; 5 \times 10^5\)</span>; <strong>Pr ≥ 0.6</strong> → Incropera et al., 7th ed.,
+Sec. 7.2, Eq. 7.30, p. 402.</p></li>
+<li><p><strong>Turbulent plate equation form</strong> <span class="math notranslate nohighlight">\((0.037\,Re^{0.8} - 871)\,Pr^{1/3}\)</span> →
+Incropera et al., 7th ed., Sec. 7.2.3, Eq. 7.38, p. 407.</p></li>
+<li><p><strong>Turbulent plate coefficient 0.037</strong> → Colburn–Reynolds analogy applied to turbulent
+flat plate; Schlichting (1979), Ch. 21; Incropera et al., 7th ed., Sec. 7.2.3.</p></li>
+<li><p><strong>Turbulent plate constant −871 (laminar leading-edge correction)</strong> → derived from
+<span class="math notranslate nohighlight">\(Re_{x,c} = 5 \times 10^5\)</span>: 871 = 0.037×(5×10<sup>5</sup>)<sup>0.8</sup> −
+0.664×(5×10<sup>5</sup>)<sup>0.5</sup>; Incropera et al., 7th ed., Sec. 7.2.3, Eq. 7.38.</p></li>
+<li><p><strong>Turbulent plate transition at</strong> <span class="math notranslate nohighlight">\(Re_{x,c} = 5 \times 10^5\)</span> → Incropera et al.,
+7th ed., Sec. 7.2.3; Cengel &amp; Ghajar, 5th ed., Sec. 7-2.</p></li>
+<li><p><strong>Turbulent plate Re</strong> <span class="math notranslate nohighlight">\(\geq 5 \times 10^5\)</span>; <strong>Pr 0.6–60</strong> → Incropera et al.,
+7th ed., Sec. 7.2.3, Eq. 7.38, p. 407; Cengel &amp; Ghajar, 5th ed., Eq. 7-24.</p></li>
+<li><p><strong>Properties at film temperature (Churchill-Bernstein, Hilpert, Pohlhausen, turbulent
+plate)</strong> → Incropera et al., 7th ed., Secs. 7.2 and 7.4.</p></li>
+<li><p><strong>Churchill-Bernstein uncertainty ±20%</strong> → <strong>UNCERTAIN</strong> — not stated in the original
+paper (Churchill &amp; Bernstein 1977, pp. 300–306, reviewed 2026-03-28). The paper
+characterizes Eq. (9) as a lower bound (p. 304); no ±% appears. Textbook attribution
+only (Incropera et al., 7th ed., Sec. 7.4).</p></li>
+<li><p><strong>Žukauskas uncertainty ±25%</strong> → <strong>UNCERTAIN</strong> (specific page not identified).</p></li>
+<li><p><strong>Hilpert uncertainty ±20%</strong> → <strong>UNCERTAIN</strong> (specific page not identified).</p></li>
+<li><p><strong>Pohlhausen uncertainty ±10%</strong> → <strong>UNCERTAIN</strong> (typical estimate; specific page not
+identified).</p></li>
+<li><p><strong>Turbulent plate uncertainty ±20%</strong> → <strong>UNCERTAIN</strong> (specific page not identified).</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="tube_banks.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Tube Banks</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="internal.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Internal Forced Convection</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, htcie contributors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">External Forced Convection</a><ul>
+<li><a class="reference internal" href="#correlation-formulas">Correlation formulas</a></li>
+<li><a class="reference internal" href="#notes">Notes</a></li>
+<li><a class="reference internal" href="#references">References</a><ul>
+<li><a class="reference internal" href="#formulation-equations">Formulation (equations)</a></li>
+<li><a class="reference internal" href="#variable-definitions">Variable definitions</a></li>
+<li><a class="reference internal" href="#range-of-applicability">Range of applicability</a></li>
+<li><a class="reference internal" href="#assumptions">Assumptions</a></li>
+<li><a class="reference internal" href="#uncertainty-error-bounds">Uncertainty / error bounds</a></li>
+<li><a class="reference internal" href="#missing-references">Missing references</a></li>
+<li><a class="reference internal" href="#traceability-mapping">Traceability mapping</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>

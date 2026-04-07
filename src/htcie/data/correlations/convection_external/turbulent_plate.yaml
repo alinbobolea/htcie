@@ -1,0 +1,35 @@
+key: external.turbulent_plate
+family: convection_external
+title: "Mixed Boundary Layer Flat Plate"
+output: Nu
+formula_latex: >
+  Nu_L = (0.037 \cdot Re_L^{4/5} - 871) \cdot Pr^{1/3}
+flow_regime: turbulent
+boundary_conditions: [constant_wall_temperature, constant_heat_flux]
+required_inputs: [Reynolds, Prandtl]
+validity:
+  geometry_type: flat_plate
+  re_min: 500000
+  re_max: 10000000
+  pr_min: 0.6
+  pr_max: 60
+  notes: "Mixed laminar-turbulent boundary layer; transition at Re_cr = 5e5; 0.6 <= Pr <= 60"
+literature_uncertainty_pct: 20
+assumptions:
+  - "Mixed laminar-turbulent boundary layer with transition at $Re_{cr} = 5 \\times 10^5$"
+  - "Isothermal flat plate"
+  - "Prandtl number in range 0.6 to 60"
+  - "Fluid properties at film temperature"
+source:
+  authors: ["Incropera, F.P.", "DeWitt, D.P."]
+  year: 2007
+  title: "Fundamentals of Heat and Mass Transfer"
+  journal: "Wiley"
+  pages: "Table 7.1 / Eq. 7.38"
+  doi: ""
+  url: ""
+notes:
+  - "The constant 871 assumes transition at Re_cr = 5×10^5; adjust constant if different transition Re is used"
+  - "Standard textbook correlation; attributed to various sources in the literature"
+  - "For higher Pr multiply by appropriate correction factor if needed"
+  - "UNCERTAINTY NOTE: ±20% uncertainty is a textbook-consensus estimate for turbulent flat-plate correlations. This correlation has no single original paper; it is a standard textbook result combining the Colburn turbulent boundary layer formula and a laminar leading-edge correction (Incropera 7th ed. Section 7.2.3, Eq. 7.38, p. 407). No primary source states a specific ±% bound. UNCERTAIN."

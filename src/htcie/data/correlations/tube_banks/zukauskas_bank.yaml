@@ -1,0 +1,60 @@
+key: tube_banks.zukauskas
+family: tube_banks
+title: "Žukauskas Bank (1972)"
+output: Nu
+formula_latex: >
+  Nu = C \cdot Re_D^{m} \cdot Pr^{0.36} \cdot \left(\frac{Pr}{Pr_w}\right)^{0.25} \cdot F
+flow_regime: all
+boundary_conditions: [constant_wall_temperature]
+required_inputs: [Reynolds, Prandtl, pitch_transverse, pitch_longitudinal, arrangement]
+validity:
+  geometry_type: tube_bank
+  re_min: 20
+  re_max: 2000000
+  pr_min: 0.7
+  pr_max: 500
+  n_rows_min: 20
+  notes: >
+    Re_min = 20 per primary source: Žukauskas (1972), Advances in Heat Transfer Vol. 8,
+    p. 147: "equations (38)-(44) describe investigations of 49 banks at Re from 20 to
+    2×10^6 and Pr from 0.7 to 500." N_L >= 20 for row-correction factor c_z = 1.0
+    (Fig. 65, p. 156). Re based on maximum velocity V_max in the minimum free-flow area.
+    Properties at arithmetic mean of inlet/outlet fluid temperatures; Pr_s at wall T_s.
+    NOTE — Re range discrepancy across sources: primary source p. 147 states Re >= 20;
+    Incropera 7th ed. Section 7.6 references.yaml notes Re_D >= 16; Incropera Table 7.5
+    lists constants starting at Re = 10. The primary source p. 147 takes precedence:
+    Re_min = 20. The p. 142 text discusses Eq. (38) for Re 10-100 as a regime but the
+    validated-data summary (p. 147) sets the lower bound at 20. Incropera's Table 7.5
+    extending to Re = 10 likely reflects textbook extrapolation, not validated data.
+literature_uncertainty_pct: 25
+assumptions:
+  - "Multiple rows of tubes, N_L >= 20 for full validity (row correction F=1.0)"
+  - "Re_D based on maximum velocity V_max in the minimum free-flow area"
+  - "Fluid properties at arithmetic mean of inlet and outlet temperatures; Pr_s at tube wall T_s"
+  - "For 100 <= Re_D,max < 1000 treat as single isolated cylinder (no bank coefficients given)"
+  - "S_T/S_L >= 0.7 required for aligned arrangement; heat transfer is inefficient below this"
+source:
+  authors: ["Žukauskas, A."]
+  year: 1972
+  title: "Heat Transfer from Tubes in Crossflow"
+  journal: "Advances in Heat Transfer"
+  volume: 8
+  pages: "93-160"
+  doi: "10.1016/S0065-2717(08)70038-8"
+  url: ""
+notes:
+  - "Primary source Eq. (38) coefficients (Žukauskas 1972, p. 142) for Re 10-100:"
+  - "  Aligned   Re 10-100:    C1=0.80, m=0.40 (Eq. 38, c=0.8)"
+  - "  Staggered Re 10-100:    C1=0.90, m=0.40 (Eq. 38, c=0.9)"
+  - "  NOTE: primary source p. 147 sets validated lower bound at Re = 20, not 10."
+  - "  Incropera Table 7.5 extends to Re = 10; this is textbook extrapolation."
+  - "  Both      Re 100-1000:  primary source text (p. 141) recommends treating as"
+  - "    single isolated cylinder; Incropera Table 7.5 confirms this approximation."
+  - "  Aligned   Re 1e3-2e5:   C1=0.27, m=0.63 (requires S_T/S_L > 0.7)"
+  - "  Staggered Re 1e3-2e5:   C1=0.35*(S_T/S_L)^0.2, m=0.60 for S_T/S_L < 2"
+  - "  Staggered Re 1e3-2e5:   C1=0.40, m=0.60 for S_T/S_L >= 2"
+  - "  Aligned   Re 2e5-2e6:   C1=0.021, m=0.84"
+  - "  Staggered Re 2e5-2e6:   C1=0.022, m=0.84"
+  - "Row correction factor F = 1.0 for N_L >= 20; full F tables require N_rows as input (Table 7.6)"
+  - "Wall Prandtl correction (Pr/Pr_s)^0.25 accounts for variable properties near tube wall"
+  - "±25% uncertainty: cited in textbooks (Incropera 7th ed. Section 7.6, p. 446; Cengel 5th ed. Section 7-4). The primary source (Žukauskas 1972) does not state an explicit ±% bound; the 25% figure represents textbook-consensus scatter for bank correlations of this type. UNCERTAIN — primary source uncertainty statement not found in available text."

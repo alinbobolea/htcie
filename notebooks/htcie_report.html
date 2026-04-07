@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>htcie Evaluation Report</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      color: #1a1a1a;
+      line-height: 1.5;
+    }
+    h1 { border-bottom: 2px solid #2563eb; padding-bottom: 0.5rem; color: #1a1a1a; }
+    h2 { color: #1a1a1a; margin-top: 2.5rem; margin-bottom: 0.5rem; }
+    h3 { color: #1a1a1a; margin-top: 1.25rem; margin-bottom: 0.25rem; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 0.75rem 0 1.5rem 0;
+      font-size: 0.9rem;
+    }
+    th {
+      background: #f1f5f9;
+      text-align: left;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #cbd5e1;
+      font-weight: 600;
+    }
+    td { padding: 0.5rem 0.75rem; border: 1px solid #e2e8f0; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    code {
+      background: #f1f5f9;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-size: 0.85em;
+      font-family: monospace;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.65rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .badge-high   { background: #dcfce7; color: #166534; }
+    .badge-medium { background: #fef9c3; color: #854d0e; }
+    .badge-low    { background: #fee2e2; color: #991b1b; }
+    .meta { color: #64748b; font-size: 0.9rem; margin-bottom: 1rem; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    ul { margin: 0.25rem 0 1rem 0; padding-left: 1.5rem; }
+    li { margin-bottom: 0.2rem; }
+    .note { color: #64748b; font-style: italic; }
+    .warning { color: #92400e; background: #fef3c7; padding: 0.5rem 0.75rem; border-radius: 4px; margin: 0.5rem 0; }
+    .excluded-list { list-style: none; padding: 0; margin: 0.75rem 0 1.5rem 0; }
+    .excluded-item {
+      display: flex; gap: 1rem; align-items: baseline;
+      padding: 0.5rem 0.85rem;
+      border-left: 3px solid #fca5a5;
+      background: #fff5f5;
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 0.4rem;
+    }
+    .excluded-key { font-weight: 600; font-size: 0.875rem; color: #991b1b; white-space: nowrap; }
+    .excluded-sep { color: #9ca3af; }
+    .excluded-reason { color: #374151; font-size: 0.875rem; }
+    footer {
+      margin-top: 3rem;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 1rem;
+      color: #94a3b8;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+  </style>
+  <script>
+    window.MathJax = {tex: {inlineMath: [['$', '$']]}};
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+</head>
+<body>
+
+<h1>htcie Evaluation Report</h1>
+<p class="meta">
+  <strong>Engine version:</strong> 0.1.0 &nbsp;|&nbsp;
+  <strong>Timestamp:</strong> 2026-03-29, 16:07:32 UTC &nbsp;|&nbsp;
+  <strong>Confidence:</strong>
+  <span class="badge badge-high">High</span>
+</p>
+<p class="meta">
+  <strong>Re</strong> = 22404 &nbsp;·&nbsp;
+  <strong>Pr</strong> = 6.200
+</p>
+
+<h2>Input Conditions</h2>
+<div class="grid-2">
+  <div>
+    <h3>Fluid Properties</h3>
+    <table>
+      <tr><th>Parameter</th><th>Value</th></tr>
+      <tr><td>Density</td><td>997.0 kg/m³</td></tr>
+      <tr><td>Viscosity</td><td>0.00089 Pa·s</td></tr>
+      <tr><td>Thermal conductivity</td><td>0.6 W/m·K</td></tr>
+      <tr><td>Heat capacity</td><td>4180.0 J/kg·K</td></tr>
+      
+    </table>
+  </div>
+  <div>
+    <h3>Geometry &amp; Flow</h3>
+    <table>
+      <tr><th>Parameter</th><th>Value</th></tr>
+      <tr><td>Geometry type</td><td>circular_tube</td></tr>
+      <tr><td>Characteristic length</td><td>0.01 m</td></tr>
+      <tr><td>Hydraulic diameter</td><td>0.01 m</td></tr>
+      <tr><td>Boundary type</td><td>constant_wall_temperature</td></tr>
+      <tr><td>Velocity</td><td>2.0 m/s</td></tr>
+    </table>
+  </div>
+</div>
+
+<h2>Applicable Correlations</h2>
+
+<ul>
+  
+  <li><code>internal.dittus_boelter</code></li>
+  
+  <li><code>internal.gnielinski</code></li>
+  
+  <li><code>internal.petukhov</code></li>
+  
+  <li><code>internal.sieder_tate</code></li>
+  
+</ul>
+
+
+<h2>Evaluations</h2>
+
+<table>
+  <tr>
+    <th>Method</th>
+    <th>Nu</th>
+    <th>h [W/m²·K]</th>
+    <th>h_low</th>
+    <th>h_high</th>
+    <th>±%</th>
+  </tr>
+  
+  <tr>
+    <td><code>internal.dittus_boelter</code></td>
+    <td>144.20</td>
+    <td>8651.9</td>
+    <td>6489.0</td>
+    <td>10814.9</td>
+    <td>25.0</td>
+  </tr>
+  
+  <tr>
+    <td><code>internal.gnielinski</code></td>
+    <td>156.12</td>
+    <td>9367.5</td>
+    <td>8430.7</td>
+    <td>10304.2</td>
+    <td>10.0</td>
+  </tr>
+  
+  <tr>
+    <td><code>internal.petukhov</code></td>
+    <td>159.29</td>
+    <td>9557.3</td>
+    <td>8601.6</td>
+    <td>10513.1</td>
+    <td>10.0</td>
+  </tr>
+  
+  <tr>
+    <td><code>internal.sieder_tate</code></td>
+    <td>149.89</td>
+    <td>8993.3</td>
+    <td>7194.7</td>
+    <td>10792.0</td>
+    <td>20.0</td>
+  </tr>
+  
+</table>
+
+
+<h2>Ranking</h2>
+
+
+<h3>#1 &nbsp; <code>internal.gnielinski</code> &nbsp; — &nbsp; Score: <strong>0.652</strong></h3>
+<table>
+  <tr><th>Factor</th><th>Value</th></tr>
+  
+  <tr><td>validity_fit</td><td>0.008</td></tr>
+  
+  <tr><td>geometry_match</td><td>1.000</td></tr>
+  
+  <tr><td>regime_match</td><td>1.000</td></tr>
+  
+  <tr><td>boundary_match</td><td>1.000</td></tr>
+  
+  <tr><td>correction_score</td><td>0.500</td></tr>
+  
+  <tr><td>pedigree</td><td>1.000</td></tr>
+  
+  <tr><td>uncertainty_score</td><td>1.000</td></tr>
+  
+  <tr><td>extrapolation_penalty</td><td>0.000</td></tr>
+  
+</table>
+
+<h3>#2 &nbsp; <code>internal.petukhov</code> &nbsp; — &nbsp; Score: <strong>0.651</strong></h3>
+<table>
+  <tr><th>Factor</th><th>Value</th></tr>
+  
+  <tr><td>validity_fit</td><td>0.005</td></tr>
+  
+  <tr><td>geometry_match</td><td>1.000</td></tr>
+  
+  <tr><td>regime_match</td><td>1.000</td></tr>
+  
+  <tr><td>boundary_match</td><td>1.000</td></tr>
+  
+  <tr><td>correction_score</td><td>0.500</td></tr>
+  
+  <tr><td>pedigree</td><td>1.000</td></tr>
+  
+  <tr><td>uncertainty_score</td><td>1.000</td></tr>
+  
+  <tr><td>extrapolation_penalty</td><td>0.000</td></tr>
+  
+</table>
+
+<h3>#3 &nbsp; <code>internal.dittus_boelter</code> &nbsp; — &nbsp; Score: <strong>0.628</strong></h3>
+<table>
+  <tr><th>Factor</th><th>Value</th></tr>
+  
+  <tr><td>validity_fit</td><td>0.226</td></tr>
+  
+  <tr><td>geometry_match</td><td>1.000</td></tr>
+  
+  <tr><td>regime_match</td><td>1.000</td></tr>
+  
+  <tr><td>boundary_match</td><td>1.000</td></tr>
+  
+  <tr><td>correction_score</td><td>0.500</td></tr>
+  
+  <tr><td>pedigree</td><td>0.500</td></tr>
+  
+  <tr><td>uncertainty_score</td><td>0.400</td></tr>
+  
+  <tr><td>extrapolation_penalty</td><td>0.000</td></tr>
+  
+</table>
+
+<h3>#4 &nbsp; <code>internal.sieder_tate</code> &nbsp; — &nbsp; Score: <strong>0.613</strong></h3>
+<table>
+  <tr><th>Factor</th><th>Value</th></tr>
+  
+  <tr><td>validity_fit</td><td>0.025</td></tr>
+  
+  <tr><td>geometry_match</td><td>1.000</td></tr>
+  
+  <tr><td>regime_match</td><td>1.000</td></tr>
+  
+  <tr><td>boundary_match</td><td>1.000</td></tr>
+  
+  <tr><td>correction_score</td><td>0.500</td></tr>
+  
+  <tr><td>pedigree</td><td>0.500</td></tr>
+  
+  <tr><td>uncertainty_score</td><td>0.700</td></tr>
+  
+  <tr><td>extrapolation_penalty</td><td>0.000</td></tr>
+  
+</table>
+
+
+
+
+
+<h2>Spread Summary</h2>
+<table>
+  <tr><th>Metric</th><th>Value</th></tr>
+  <tr><td>Method count</td><td>4</td></tr>
+  <tr>
+    <td>Mean h [W/m²·K]</td>
+    <td>152.38</td>
+  </tr>
+  <tr>
+    <td>Std dev</td>
+    <td>5.81</td>
+  </tr>
+  <tr>
+    <td>Relative spread</td>
+    <td>
+      
+        3.8%
+      
+    </td>
+  </tr>
+</table>
+
+<h2>Explanation</h2>
+
+<p class="meta">Scoring rationale for <code>internal.gnielinski</code></p>
+<table>
+  <tr><th>Score</th><td>0.652</td></tr>
+  <tr><th>Confidence</th><td>
+    <span class="badge badge-high">
+      High
+    </span>
+  </td></tr>
+</table>
+
+
+<h2>Key Assumptions</h2>
+<ul>
+  
+  <li>Smooth circular tube, fully developed or thermally developing turbulent flow</li>
+  
+  <li>Fluid properties at bulk mean temperature</li>
+  
+  <li>Petukhov friction factor used: $f = (0.790 \ln Re - 1.64)^{-2}$</li>
+  
+</ul>
+
+
+
+
+<h2>Recommendation</h2>
+<p>Use internal.gnielinski — highest score (0.652) for the given operating conditions.</p>
+
+
+<h2>Excluded Correlations</h2>
+
+<ul class="excluded-list">
+  
+  <li class="excluded-item">
+    <span class="excluded-key">churchill_bernstein</span>
+    <span class="excluded-sep">—</span>
+    <span class="excluded-reason">Geometry type 'circular_tube' does not match required 'cylinder_crossflow'. <code style="font-size:0.78rem;color:#64748b;">external.churchill_bernstein</code></span>
+  </li>
+  
+  <li class="excluded-item">
+    <span class="excluded-key">hilpert</span>
+    <span class="excluded-sep">—</span>
+    <span class="excluded-reason">Geometry type 'circular_tube' does not match required 'cylinder_crossflow'. <code style="font-size:0.78rem;color:#64748b;">external.hilpert</code></span>
+  </li>
+  
+  <li class="excluded-item">
+    <span class="excluded-key">pohlhausen_plate</span>
+    <span class="excluded-sep">—</span>
+    <span class="excluded-reason">Geometry type 'circular_tube' does not match required 'flat_plate'. <code style="font-size:0.78rem;color:#64748b;">external.pohlhausen_plate</code></span>
+  </li>
+  
+  <li class="excluded-item">
+    <span class="excluded-key">turbulent_plate</span>
+    <span class="excluded-sep">—</span>
+    <span class="excluded-reason">Geometry type 'circular_tube' does not match required 'flat_plate'. <code style="font-size:0.78rem;color:#64748b;">external.turbulent_plate</code></span>
+  </li>
+  
+  <li class="excluded-item">
+    <span class="excluded-key">zukauskas_cylinder</span>
+    <span class="excluded-sep">—</span>
+    <span class="excluded-reason">Geometry type 'circular_tube' does not match required 'cylinder_crossflow'. <code style="font-size:0.78rem;color:#64748b;">external.zukauskas_cylinder</code></span>
+  </li>
+  
+  <li class="excluded-item">
+    <span class="excluded-key">churchill_ozoe</span>
+    <span class="excluded-sep">—</span>
+    <span class="excluded-reason">Reynolds number 2.24e+04 is above maximum 2300. <code style="font-size:0.78rem;color:#64748b;">internal.churchill_ozoe</code></span>
+  </li>
+  
+  <li class="excluded-item">
+    <span class="excluded-key">shah_laminar</span>
+    <span class="excluded-sep">—</span>
+    <span class="excluded-reason">Reynolds number 2.24e+04 is above maximum 2300. <code style="font-size:0.78rem;color:#64748b;">internal.shah_laminar</code></span>
+  </li>
+  
+  <li class="excluded-item">
+    <span class="excluded-key">grimison</span>
+    <span class="excluded-sep">—</span>
+    <span class="excluded-reason">Geometry type 'circular_tube' does not match required 'tube_bank'. <code style="font-size:0.78rem;color:#64748b;">tube_banks.grimison</code></span>
+  </li>
+  
+  <li class="excluded-item">
+    <span class="excluded-key">zukauskas</span>
+    <span class="excluded-sep">—</span>
+    <span class="excluded-reason">Geometry type 'circular_tube' does not match required 'tube_bank'. <code style="font-size:0.78rem;color:#64748b;">tube_banks.zukauskas</code></span>
+  </li>
+  
+</ul>
+
+
+<footer>
+  Generated by htcie v0.1.0 — 2026-03-29, 16:07:32 UTC
+</footer>
+
+</body>
+</html>

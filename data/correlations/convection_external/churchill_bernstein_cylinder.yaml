@@ -1,0 +1,37 @@
+key: external.churchill_bernstein
+family: convection_external
+title: "Churchill-Bernstein (1977)"
+output: Nu
+formula_latex: >
+  Nu = 0.3 + \frac{0.62 \, Re^{1/2} Pr^{1/3}}{\left[1 + \left(\frac{0.4}{Pr}\right)^{2/3}\right]^{1/4}}
+  \left[1 + \left(\frac{Re}{282000}\right)^{5/8}\right]^{4/5}
+flow_regime: all
+boundary_conditions: [constant_wall_temperature, constant_heat_flux]
+required_inputs: [Reynolds, Prandtl]
+validity:
+  geometry_type: cylinder_crossflow
+  re_min: 0
+  re_max: 40000000
+  pr_min: 0.2
+  notes: "Valid for all Re from 0 to 4e7 provided Re·Pr > 0.2; properties at film temperature"
+literature_uncertainty_pct: 20  # UNCERTAIN: ±20% not stated in original paper; see note below
+assumptions:
+  - "Isothermal cylinder in crossflow"
+  - "Fluid properties evaluated at film temperature (average of wall and free-stream)"
+  - "$Re \\cdot Pr > 0.2$ required for accurate results"
+  - "Formula is a lower bound per Churchill & Bernstein (1977, p. 304): 'proposed as a lower bound for computed and experimental values.' Actual Nu values typically lie above this estimate."
+source:
+  authors: ["Churchill, S.W.", "Bernstein, M."]
+  year: 1977
+  title: "A correlating equation for forced convection from gases and liquids to a circular cylinder in crossflow"
+  journal: "Journal of Heat Transfer"
+  volume: 99
+  issue: 2
+  pages: "300-306"
+  doi: "10.1115/1.3450685"
+  url: ""
+notes:
+  - "Preferred all-Re correlation for cylinder in crossflow; covers Re = 0 to 4×10^7"
+  - "Supersedes Hilpert (1933) and Žukauskas (1972) for general use due to wider Re range"
+  - "UNCERTAINTY NOTE: The original paper (Churchill & Bernstein 1977, J. Heat Transfer 99:300-306, p. 303-305) does NOT state a ±20% uncertainty. Instead, Eq. (9) is explicitly characterized as a LOWER BOUND: 'proposed as a lower bound for the computed and experimental values...for all Re and Pr such that RePr > 0.2' (p. 304, Summary §1). Experimental data 'generally fall somewhat above equation (9)' (p. 303). The ±20% figure is a textbook attribution (e.g., Incropera 7th ed. p. 432, Cengel 5th ed.) and cannot be verified in the 1977 primary source."
+  - "Film temperature: T_film = (T_wall + T_inf) / 2"

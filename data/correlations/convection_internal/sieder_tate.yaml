@@ -1,0 +1,39 @@
+key: internal.sieder_tate
+family: convection_internal
+title: "Sieder-Tate (1936)"
+output: Nu
+formula_latex: "Nu = 0.027 \\cdot Re^{0.8} \\cdot Pr^{1/3} \\cdot \\left(\\frac{\\mu}{\\mu_w}\\right)^{0.14}"
+flow_regime: turbulent
+boundary_conditions: [constant_wall_temperature, constant_heat_flux]
+required_inputs: [Reynolds, Prandtl, dynamic_viscosity_bulk, dynamic_viscosity_wall]
+validity:
+  geometry_type: circular_tube
+  re_min: 10000
+  re_max: 1000000
+  pr_min: 0.7
+  pr_max: 16700
+  ld_min: 10
+  notes: >
+    Pr range 0.7-16700 per Incropera 7th ed. Eq 8.61; Re >= 10000, L/D >= 10.
+    Verified against Incropera 7th ed. Eq 8.61.
+literature_uncertainty_pct: 20  # UNCERTAIN: see note below; primary source shows variable scatter
+assumptions:
+  - "Smooth circular tube, fully developed turbulent flow"
+  - "Bulk fluid properties at bulk mean temperature except $\\mu_w$ at wall temperature"
+  - "Viscosity correction $(\\mu/\\mu_w)^{0.14}$ accounts for property variation across boundary layer"
+  - "More reliable than Dittus-Boelter for high-viscosity fluids (oils)"
+source:
+  authors: ["Sieder, E.N.", "Tate, G.E."]
+  year: 1936
+  title: "Heat Transfer and Pressure Drop of Liquids in Tubes"
+  journal: "Industrial & Engineering Chemistry"
+  volume: 28
+  issue: 12
+  pages: "1429-1435"
+  doi: "10.1021/ie50324a027"
+  url: "https://doi.org/10.1021/ie50324a027"
+notes:
+  - "Requires wall viscosity mu_w which must be evaluated at wall temperature"
+  - "For water and low-viscosity fluids the (mu/mu_w)^0.14 correction is small"
+  - "Gnielinski (1976) or Petukhov (1970) preferred for higher accuracy without viscosity input"
+  - "UNCERTAINTY NOTE: The ±20% figure is a textbook attribution. The original paper (Sieder & Tate 1936, Ind. Eng. Chem. 28:1429-1435, Table II, p. 1433) reports algebraic mean deviations ranging from ±4 to ±63% depending on fluid type (oils, water) and Re range (viscous/transitional/turbulent). No single ±20% bound is stated in the paper. The 20% represents a textbook-consensus estimate for turbulent operation with moderate viscosity variation."

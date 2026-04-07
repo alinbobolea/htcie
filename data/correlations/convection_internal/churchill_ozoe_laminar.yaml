@@ -1,0 +1,36 @@
+key: internal.churchill_ozoe
+family: convection_internal
+title: "Churchill-Ozoe (1973)"
+output: Nu
+formula_latex: >
+  Nu = Nu_{\infty} + \frac{0.0668 \cdot Gz}{1 + 0.04 \cdot Gz^{2/3}},
+  \quad Nu_{\infty} = 3.66\ (\text{UWT}),\ 4.36\ (\text{UHF}),
+  \quad Gz = Re \cdot Pr \cdot \frac{D}{L}
+flow_regime: laminar
+boundary_conditions: [constant_wall_temperature, constant_heat_flux]
+required_inputs: [Reynolds, Prandtl]
+validity:
+  geometry_type: circular_tube
+  re_max: 2300
+  notes: "Laminar thermally developing flow; base Nu switches with boundary condition"
+literature_uncertainty_pct: 10
+assumptions:
+  - "Laminar flow in circular tube (Re < 2300)"
+  - "Thermally developing flow; applies Hausen-type correction to fully developed asymptote"
+  - "Base $Nu = 3.66$ for uniform wall temperature (UWT); base $Nu = 4.36$ for uniform heat flux (UHF)"
+  - "Fluid properties at bulk mean temperature"
+source:
+  authors: ["Churchill, S.W.", "Ozoe, H."]
+  year: 1973
+  title: "Correlations for laminar forced convection with uniform heating in flow over a plate and in developing and fully developed flow in a tube"
+  journal: "Journal of Heat Transfer"
+  volume: 95
+  issue: 1
+  pages: "78-84"
+  doi: "10.1115/1.3450009"
+  url: ""
+notes:
+  - "Switches fully developed base Nu between 3.66 (UWT) and 4.36 (UHF)"
+  - "Thermally developing correction applied via Graetz number Gz = Re·Pr·(D/L)"
+  - "Structurally identical to Shah (1978) for UWT; differs in supporting UHF boundary condition"
+  - "UNCERTAINTY NOTE: ±10% uncertainty is a textbook-consensus estimate for laminar developing-flow correlations. The original paper (Churchill & Ozoe 1973, J. Heat Transfer 95:78-84, DOI 10.1115/1.3450009) is paywalled (ASME). Cannot be verified against primary source. UNCERTAIN."

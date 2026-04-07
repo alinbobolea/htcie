@@ -1,0 +1,38 @@
+key: tube_banks.grimison
+family: tube_banks
+title: "Grimison (1937)"
+output: Nu
+formula_latex: >
+  Nu = C_1 \cdot Re_D^{m_1} \cdot Pr^{0.36}
+flow_regime: all
+boundary_conditions: [constant_wall_temperature, constant_heat_flux]
+required_inputs: [Reynolds, Prandtl, pitch_transverse, pitch_longitudinal, arrangement]
+validity:
+  geometry_type: tube_bank
+  re_min: 2000
+  re_max: 40000
+  notes: >
+    Re range 2000-40000 and C1/m1 constants sourced from Incropera 7th ed. Table 7.4
+    (historical reference, p. 446) and Cengel 5th ed. Section 7-4. The primary source
+    (Grimison 1937, Trans. ASME 59:583-594) is paywalled (ASME, DOI 10.1115/1.4020557)
+    and was not available for direct verification. Re range cannot be confirmed against
+    the original paper. UNCERTAIN — range source is textbook secondary literature only.
+literature_uncertainty_pct: 25  # UNCERTAIN: see note below; primary source paywalled
+assumptions:
+  - "Multiple rows of tubes, inline or staggered arrangement"
+  - "No wall Prandtl correction ($Pr/Pr_w$ ratio not applied)"
+  - "C1 and m1 constants from tabulated data in Incropera/DeWitt Table 7.1"
+source:
+  authors: ["Grimison, E.D."]
+  year: 1937
+  title: "Correlation and Utilization of New Data on Flow Resistance and Heat Transfer for Cross Flow of Gases over Tube Banks"
+  journal: "Transactions of the ASME"
+  volume: 59
+  pages: "583-594"
+  doi: ""
+  url: ""
+notes:
+  - "Inline arrangement: C1=0.27, m1=0.63"
+  - "Staggered arrangement: C1=0.35*(S_T/S_L)^0.2, m1=0.6"
+  - "Older correlation superseded by Žukauskas (1972) for wider Re and Pr coverage"
+  - "±25% uncertainty; limited Re range (2000 to 40000) — UNCERTAIN: both the Re range and the ±25% figure are sourced from textbooks (Incropera/Cengel). The primary Grimison (1937) paper is paywalled and unavailable for direct verification."
