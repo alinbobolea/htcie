@@ -29,8 +29,6 @@ pip install htcie
 uv add htcie
 ```
 
-A hosted instance is also available — the API at `https://htcie-api.onrender.com` and the GUI at `https://htcie-gui.onrender.com` run on Render.com's free tier (expect a ~30 s cold-start if the service has been idle). See [DEPLOY.md](DEPLOY.md) to self-host your own instance.
-
 ---
 
 ## Quickstart
