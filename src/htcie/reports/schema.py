@@ -69,7 +69,8 @@ class HtcieReport(BaseModel):
     def to_dict(self) -> dict[str, Any]:
         """Return a JSON-serialisable dict representation of this report.
 
-        The ``explanation`` sub-dict expands the :class:`~htcie.core.explain.Explanation`
+        The ``explanation`` sub-dict expands the
+        :class:`~htcie.core.explain.Explanation`
         dataclass inline.  ``why_others_excluded`` is converted from a list of
         ``(key, reason)`` tuples to a list of ``{"key": ..., "reason": ...}``
         dicts, and a rendered ``"text"`` key is added via

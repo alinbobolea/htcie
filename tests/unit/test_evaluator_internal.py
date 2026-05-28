@@ -184,8 +184,8 @@ class TestPetukhov:
         re = state.reynolds
         pr = state.prandtl
         f = (0.790 * log(re) - 1.64) ** -2
-        expected = (f / 8) * re * pr / (
-            1.07 + 12.7 * (f / 8) ** 0.5 * (pr ** (2 / 3) - 1)
+        expected = (
+            (f / 8) * re * pr / (1.07 + 12.7 * (f / 8) ** 0.5 * (pr ** (2 / 3) - 1))
         )
         assert result.value == pytest.approx(expected, rel=1e-6)
 
@@ -201,7 +201,8 @@ class TestPetukhov:
     def test_gnielinski_vs_petukhov_ordering(
         self, registry: CorrelationRegistry, engine: EvaluationEngine
     ) -> None:
-        """At Re=50000, Gnielinski > Petukhov (denominator 1.07 vs 1.0 lowers Petukhov)."""
+        """At Re=50000, Gnielinski > Petukhov (denominator 1.07 vs 1.0
+        lowers Petukhov)."""
         state = make_internal_state(re_approx=50000.0, pr_approx=0.7)
         gn_result = engine.evaluate(state, registry.get("internal.gnielinski"))
         pe_result = engine.evaluate(state, registry.get("internal.petukhov"))

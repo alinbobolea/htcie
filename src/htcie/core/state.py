@@ -213,7 +213,8 @@ class EngineeringState(BaseModel):
     @computed_field(return_type=float | None)  # type: ignore[prop-decorator]
     @property
     def relative_roughness(self) -> float | None:
-        r"""Relative roughness :math:`\varepsilon / D_h` = ``roughness`` / ``hydraulic_diameter``.
+        r"""Relative roughness :math:`\varepsilon / D_h`
+        = ``roughness`` / ``hydraulic_diameter``.
 
         Returns ``None`` when ``hydraulic_diameter`` is not specified. Used by
         the Petukhov friction-factor formula (smooth tube assumed when absent).
@@ -226,7 +227,8 @@ class EngineeringState(BaseModel):
     @computed_field(return_type=float | None)  # type: ignore[prop-decorator]
     @property
     def graetz(self) -> float | None:
-        r"""Graetz number :math:`Gz = Re \cdot Pr \cdot (D_h / L)` for thermally developing flow."""
+        r"""Graetz number :math:`Gz = Re \cdot Pr \cdot (D_h / L)`
+        for thermally developing flow."""
         D_h = self.geometry.hydraulic_diameter
         L = self.flow.developing_length
         if D_h is None or L is None:
@@ -246,7 +248,8 @@ class EngineeringState(BaseModel):
     @computed_field(return_type=float | None)  # type: ignore[prop-decorator]
     @property
     def pitch_ratio_transverse(self) -> float | None:
-        r"""Transverse pitch ratio :math:`S_T / D` = ``pitch_transverse`` / ``characteristic_length``."""
+        r"""Transverse pitch ratio :math:`S_T / D`
+        = ``pitch_transverse`` / ``characteristic_length``."""
         S_T = self.geometry.pitch_transverse
         D = self.geometry.characteristic_length
         if S_T is None or D == 0:
@@ -256,7 +259,8 @@ class EngineeringState(BaseModel):
     @computed_field(return_type=float | None)  # type: ignore[prop-decorator]
     @property
     def pitch_ratio_longitudinal(self) -> float | None:
-        r"""Longitudinal pitch ratio :math:`S_L / D` = ``pitch_longitudinal`` / ``characteristic_length``."""
+        r"""Longitudinal pitch ratio :math:`S_L / D`
+        = ``pitch_longitudinal`` / ``characteristic_length``."""
         S_L = self.geometry.pitch_longitudinal
         D = self.geometry.characteristic_length
         if S_L is None or D == 0:

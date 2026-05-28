@@ -1,4 +1,5 @@
-"""Serialization helpers for writing an :class:`~htcie.reports.schema.HtcieReport` to disk.
+"""Serialization helpers for writing an
+:class:`~htcie.reports.schema.HtcieReport` to disk.
 
 Three formats are supported:
 

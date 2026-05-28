@@ -64,7 +64,8 @@ def test_run_defaults_port_to_8080_without_env(
 def test_run_uses_default_storage_secret_without_env(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    """storage_secret defaults to 'dev-secret-change-me' when NICEGUI_STORAGE_SECRET is not set."""
+    """storage_secret defaults to 'dev-secret-change-me'
+    when NICEGUI_STORAGE_SECRET is not set."""
     monkeypatch.delenv("NICEGUI_STORAGE_SECRET", raising=False)
     with (
         patch("htcie.gui.main.evaluate.setup"),

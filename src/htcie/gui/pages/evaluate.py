@@ -312,7 +312,11 @@ def setup() -> None:
                             ),
                         }
                     html_bytes = render_html(report, charts=charts).encode("utf-8")
-                    timestamp = report.timestamp.replace(", ", "_").replace(":", "-").replace(" ", "_")
+                    timestamp = (
+                        report.timestamp.replace(", ", "_")
+                        .replace(":", "-")
+                        .replace(" ", "_")
+                    )
                     ui.download(html_bytes, filename=f"htcie_report_{timestamp}.html")
 
                 with ui.row().classes("gap-2 mt-4"):

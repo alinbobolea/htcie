@@ -75,7 +75,8 @@ def test_run_evaluation_report_is_serializable(
 def test_run_evaluation_report_has_uncertainty_fields(
     registry: CorrelationRegistry,
 ) -> None:
-    """Each evaluation dict must contain h, h_low, h_high, uncertainty_pct, uncertainty_note."""
+    """Each evaluation dict must contain
+    h, h_low, h_high, uncertainty_pct, uncertainty_note."""
     state = _water_tube_state()
     report = run_evaluation(state, registry)
     assert report is not None

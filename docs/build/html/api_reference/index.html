@@ -396,7 +396,8 @@ geometries</p></li>
 <dl class="py property">
 <dt class="sig sig-object py" id="htcie.core.state.EngineeringState.graetz">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">graetz</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#htcie.core.state.EngineeringState.graetz" title="Link to this definition">¶</a></dt>
-<dd><p>Graetz number <span class="math notranslate nohighlight">\(Gz = Re \cdot Pr \cdot (D_h / L)\)</span> for thermally developing flow.</p>
+<dd><p>Graetz number <span class="math notranslate nohighlight">\(Gz = Re \cdot Pr \cdot (D_h / L)\)</span>
+for thermally developing flow.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -408,13 +409,15 @@ geometries</p></li>
 <dl class="py property">
 <dt class="sig sig-object py" id="htcie.core.state.EngineeringState.pitch_ratio_longitudinal">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">pitch_ratio_longitudinal</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#htcie.core.state.EngineeringState.pitch_ratio_longitudinal" title="Link to this definition">¶</a></dt>
-<dd><p>Longitudinal pitch ratio <span class="math notranslate nohighlight">\(S_L / D\)</span> = <code class="docutils literal notranslate"><span class="pre">pitch_longitudinal</span></code> / <code class="docutils literal notranslate"><span class="pre">characteristic_length</span></code>.</p>
+<dd><p>Longitudinal pitch ratio <span class="math notranslate nohighlight">\(S_L / D\)</span>
+= <code class="docutils literal notranslate"><span class="pre">pitch_longitudinal</span></code> / <code class="docutils literal notranslate"><span class="pre">characteristic_length</span></code>.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="htcie.core.state.EngineeringState.pitch_ratio_transverse">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">pitch_ratio_transverse</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#htcie.core.state.EngineeringState.pitch_ratio_transverse" title="Link to this definition">¶</a></dt>
-<dd><p>Transverse pitch ratio <span class="math notranslate nohighlight">\(S_T / D\)</span> = <code class="docutils literal notranslate"><span class="pre">pitch_transverse</span></code> / <code class="docutils literal notranslate"><span class="pre">characteristic_length</span></code>.</p>
+<dd><p>Transverse pitch ratio <span class="math notranslate nohighlight">\(S_T / D\)</span>
+= <code class="docutils literal notranslate"><span class="pre">pitch_transverse</span></code> / <code class="docutils literal notranslate"><span class="pre">characteristic_length</span></code>.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -426,7 +429,8 @@ geometries</p></li>
 <dl class="py property">
 <dt class="sig sig-object py" id="htcie.core.state.EngineeringState.relative_roughness">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">relative_roughness</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#htcie.core.state.EngineeringState.relative_roughness" title="Link to this definition">¶</a></dt>
-<dd><p>Relative roughness <span class="math notranslate nohighlight">\(\varepsilon / D_h\)</span> = <code class="docutils literal notranslate"><span class="pre">roughness</span></code> / <code class="docutils literal notranslate"><span class="pre">hydraulic_diameter</span></code>.</p>
+<dd><p>Relative roughness <span class="math notranslate nohighlight">\(\varepsilon / D_h\)</span>
+= <code class="docutils literal notranslate"><span class="pre">roughness</span></code> / <code class="docutils literal notranslate"><span class="pre">hydraulic_diameter</span></code>.</p>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> when <code class="docutils literal notranslate"><span class="pre">hydraulic_diameter</span></code> is not specified. Used by
 the Petukhov friction-factor formula (smooth tube assumed when absent).</p>
 </dd></dl>
@@ -1427,7 +1431,8 @@ with <code class="docutils literal notranslate"><span class="pre">key</span></co
 <dt class="sig sig-object py" id="htcie.reports.schema.HtcieReport.to_dict">
 <span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/htcie/reports/schema.html#HtcieReport.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#htcie.reports.schema.HtcieReport.to_dict" title="Link to this definition">¶</a></dt>
 <dd><p>Return a JSON-serialisable dict representation of this report.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">explanation</span></code> sub-dict expands the <a class="reference internal" href="#htcie.core.explain.Explanation" title="htcie.core.explain.Explanation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Explanation</span></code></a>
+<p>The <code class="docutils literal notranslate"><span class="pre">explanation</span></code> sub-dict expands the
+<a class="reference internal" href="#htcie.core.explain.Explanation" title="htcie.core.explain.Explanation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Explanation</span></code></a>
 dataclass inline.  <code class="docutils literal notranslate"><span class="pre">why_others_excluded</span></code> is converted from a list of
 <code class="docutils literal notranslate"><span class="pre">(key,</span> <span class="pre">reason)</span></code> tuples to a list of <code class="docutils literal notranslate"><span class="pre">{&quot;key&quot;:</span> <span class="pre">...,</span> <span class="pre">&quot;reason&quot;:</span> <span class="pre">...}</span></code>
 dicts, and a rendered <code class="docutils literal notranslate"><span class="pre">&quot;text&quot;</span></code> key is added via
@@ -1446,7 +1451,8 @@ dicts, and a rendered <code class="docutils literal notranslate"><span class="pr
 
 </dd></dl>
 
-<p id="module-htcie.reports.serializers">Serialization helpers for writing an <a class="reference internal" href="#htcie.reports.schema.HtcieReport" title="htcie.reports.schema.HtcieReport"><code class="xref py py-class docutils literal notranslate"><span class="pre">HtcieReport</span></code></a> to disk.</p>
+<p id="module-htcie.reports.serializers">Serialization helpers for writing an
+<a class="reference internal" href="#htcie.reports.schema.HtcieReport" title="htcie.reports.schema.HtcieReport"><code class="xref py py-class docutils literal notranslate"><span class="pre">HtcieReport</span></code></a> to disk.</p>
 <p>Three formats are supported:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#htcie.reports.serializers.dump_json_report" title="htcie.reports.serializers.dump_json_report"><code class="xref py py-func docutils literal notranslate"><span class="pre">dump_json_report()</span></code></a> — JSON (machine-readable, fully self-contained)</p></li>

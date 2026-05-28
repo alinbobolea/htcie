@@ -59,7 +59,8 @@ class ApplicabilityEngine:
     def _check(
         self, method: CorrelationMetadata, state: EngineeringState
     ) -> str | None:
-        """Return an exclusion reason string, or ``None`` if the method is applicable."""
+        """Return an exclusion reason string, or ``None`` if the method is
+        applicable."""
         validity = method.validity
         re_min = validity.get("re_min")
         re_max = validity.get("re_max")

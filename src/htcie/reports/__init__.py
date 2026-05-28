@@ -1,6 +1,7 @@
 """Report serialization and rendering for htcie evaluation results.
 
-This package provides three output formats for an :class:`~htcie.reports.schema.HtcieReport`:
+This package provides three output formats for an
+:class:`~htcie.reports.schema.HtcieReport`:
 
 - **JSON** — ``dump_json_report(report, path)`` writes a fully self-contained,
   machine-readable audit record. Useful for downstream tooling, storage, and

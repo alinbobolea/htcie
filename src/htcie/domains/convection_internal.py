@@ -81,7 +81,8 @@ _DISPATCH["internal.dittus_boelter"] = _dittus_boelter
 
 
 def _sieder_tate(state: EngineeringState) -> EvaluationResult:
-    r"""Sieder-Tate (1936): :math:`Nu = 0.027 \, Re^{0.8} \, Pr^{1/3} \, (\mu/\mu_w)^{0.14}`.
+    r"""Sieder-Tate (1936):
+    :math:`Nu = 0.027 \, Re^{0.8} \, Pr^{1/3} \, (\mu/\mu_w)^{0.14}`.
 
     The viscosity-ratio correction :math:`(\mu/\mu_w)^{0.14}` is omitted
     (set to 1) when ``fluid.wall_viscosity`` is not provided.
@@ -120,7 +121,8 @@ _DISPATCH["internal.sieder_tate"] = _sieder_tate
 
 
 def _gnielinski(state: EngineeringState) -> EvaluationResult:
-    r"""Gnielinski (1976): :math:`Nu = \dfrac{(f/8)(Re - 1000)\,Pr}{1 + 12.7\sqrt{f/8}\,(Pr^{2/3} - 1)}`.
+    r"""Gnielinski (1976):
+    :math:`Nu = \dfrac{(f/8)(Re - 1000)\,Pr}{1 + 12.7\sqrt{f/8}\,(Pr^{2/3} - 1)}`.
 
     The friction factor :math:`f` is computed from the Petukhov (1970) formula.
     Valid for :math:`3000 \leq Re \leq 5 \times 10^6` and :math:`0.5 \leq Pr \leq 2000`.
@@ -153,7 +155,8 @@ _DISPATCH["internal.gnielinski"] = _gnielinski
 
 
 def _petukhov(state: EngineeringState) -> EvaluationResult:
-    r"""Petukhov (1970): :math:`Nu = \dfrac{(f/8)\,Re\,Pr}{1.07 + 12.7\sqrt{f/8}\,(Pr^{2/3} - 1)}`.
+    r"""Petukhov (1970):
+    :math:`Nu = \dfrac{(f/8)\,Re\,Pr}{1.07 + 12.7\sqrt{f/8}\,(Pr^{2/3} - 1)}`.
 
     Uses the Petukhov friction factor for smooth tubes. Valid for
     :math:`10^4 \leq Re \leq 5 \times 10^6` and :math:`0.5 \leq Pr \leq 2000`.

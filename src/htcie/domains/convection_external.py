@@ -180,7 +180,8 @@ def _zukauskas_cylinder(state: EngineeringState) -> EvaluationResult:
 
 
 def _pohlhausen_plate(state: EngineeringState) -> EvaluationResult:
-    r"""Pohlhausen (1921): :math:`Nu_L = 0.664 \, Re_L^{1/2} \, Pr^{1/3}` for a laminar flat plate.
+    r"""Pohlhausen (1921): :math:`Nu_L = 0.664 \, Re_L^{1/2} \, Pr^{1/3}`
+    for a laminar flat plate.
 
     Valid for :math:`Re_L < 5 \times 10^5` and :math:`Pr \geq 0.6`.
     """
@@ -210,7 +211,8 @@ def _pohlhausen_plate(state: EngineeringState) -> EvaluationResult:
 
 
 def _turbulent_plate(state: EngineeringState) -> EvaluationResult:
-    r"""Mixed boundary-layer flat plate: :math:`Nu_L = (0.037 \, Re_L^{0.8} - 871) \, Pr^{1/3}`.
+    r"""Mixed boundary-layer flat plate:
+    :math:`Nu_L = (0.037 \, Re_L^{0.8} - 871) \, Pr^{1/3}`.
 
     Accounts for the laminar leading-edge region assuming transition at
     :math:`Re_{x,c} = 5 \times 10^5`. Valid for :math:`Re_L \geq 5 \times 10^5`.

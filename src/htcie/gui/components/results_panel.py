@@ -103,7 +103,8 @@ def render_results(result: dict) -> None:
             if h is not None:
                 if h_low is not None and h_high is not None:
                     ui.html(
-                        f"<b>h = {h:.1f} W/m²·K &nbsp; [{h_low:.1f}, {h_high:.1f}] W/m²·K</b>"
+                        f"<b>h = {h:.1f} W/m²·K"
+                        f" &nbsp; [{h_low:.1f}, {h_high:.1f}] W/m²·K</b>"
                     )
                 else:
                     ui.html(f"<b>h = {h:.1f} W/m²·K</b>")

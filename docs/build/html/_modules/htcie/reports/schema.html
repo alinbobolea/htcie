@@ -331,7 +331,8 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a JSON-serialisable dict representation of this report.</span>
 
-<span class="sd">        The ``explanation`` sub-dict expands the :class:`~htcie.core.explain.Explanation`</span>
+<span class="sd">        The ``explanation`` sub-dict expands the</span>
+<span class="sd">        :class:`~htcie.core.explain.Explanation`</span>
 <span class="sd">        dataclass inline.  ``why_others_excluded`` is converted from a list of</span>
 <span class="sd">        ``(key, reason)`` tuples to a list of ``{&quot;key&quot;: ..., &quot;reason&quot;: ...}``</span>
 <span class="sd">        dicts, and a rendered ``&quot;text&quot;`` key is added via</span>
