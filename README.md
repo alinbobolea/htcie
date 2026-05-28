@@ -7,7 +7,7 @@
 [![Tests](https://github.com/alinbobolea/htcie/actions/workflows/tests.yml/badge.svg)](https://github.com/alinbobolea/htcie/actions/workflows/tests.yml)
 [![Docs](https://github.com/alinbobolea/htcie/actions/workflows/docs.yml/badge.svg)](https://github.com/alinbobolea/htcie/actions/workflows/docs.yml)
 
-📖 **[Read the docs →](https://alinbobolea.github.io/docs/htcie/)**
+**Documentation:** https://alinbobolea.github.io/docs/htcie/
 
 ---
 
